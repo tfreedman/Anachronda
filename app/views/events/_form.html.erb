@@ -16,12 +16,16 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :start_time %><br />
-    <%= f.datetime_select :start_time %>
+    <%= f.label :priority %><br />
+    <%= f.number_field :priority %>
   </div>
   <div class="field">
-    <%= f.label :duration %><br />
-    <%= f.number_field :duration %>
+    <%= f.label :end_time %><br />
+    <%= f.datetime_select :end_time %>
+  </div>
+  <div class="field">
+    <%= f.label :start_time %><br />
+    <%= f.datetime_select :start_time %>
   </div>
   <div class="actions">
     <%= f.submit %>

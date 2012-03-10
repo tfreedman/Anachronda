@@ -1,6 +1,6 @@
 CloudSpiders::Application.routes.draw do
   
-  devise_for :users
+  devise_for :users, :has_many => :events
 
   resources :events
   root :to => "events#index"
