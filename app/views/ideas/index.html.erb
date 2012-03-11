@@ -1,0 +1,39 @@
+<% if user_signed_in? %>
+<h1>Listing ideas</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Priority</th>
+    <th>Duration</th>
+    <th>Longitude</th>
+    <th>Latitude</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% current_user.ideas.each do |idea| %>
+  <tr>
+    <td><%= idea.title %></td>
+    <td><%= idea.priority %></td>
+    <td><%= idea.duration %></td>
+    <td><%= idea.loc_long %></td>
+    <td><%= idea.loc_lat %></td>
+    <td><%= link_to 'Show', idea %></td>
+    <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
+    <td><%= link_to 'Destroy', idea, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<h2><%= link_to 'My Events (already scheduled events)', events_path %></h2>
+
+<br />
+<br />
+<%= link_to 'New Idea', new_idea_path %>
+<% else %>
+<h1> You must sign in before you can view any events </h1>
+<% end %> 

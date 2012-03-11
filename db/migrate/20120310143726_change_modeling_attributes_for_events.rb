@@ -13,6 +13,7 @@ class ChangeModelingAttributesForEvents < ActiveRecord::Migration
 		t.float :loc_long
 		t.float :loc_lat
 	end
+    add_index :events, :user_id
   end
 
   
@@ -31,6 +32,7 @@ class ChangeModelingAttributesForEvents < ActiveRecord::Migration
 		t.remove :loc_long
 		t.remove :loc_lat
 	end
+    remove_index :events, :user_id
   end
   
 end

@@ -1,9 +1,11 @@
 CloudSpiders::Application.routes.draw do
   
-  devise_for :users, :has_many => :events
-
-  resources :events
-  root :to => "events#index"
+  
+	devise_for :users, :has_many => [:events, :ideas]
+	
+	resources :ideas
+	resources :events
+	root :to => "events#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
