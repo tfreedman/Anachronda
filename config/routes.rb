@@ -1,12 +1,17 @@
 CloudSpiders::Application.routes.draw do
   
   
-	devise_for :users, :has_many => [:events, :ideas]
+  resources :authentications
+
+	devise_for :users, :has_many => [:events, :ideas, :authentications]
 	
 	resources :ideas
 	resources :events
+    resources :authentications
 	root :to => "events#index"
 
+	match '/auth/:provider/callback' => 'authentications#create'
+	
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

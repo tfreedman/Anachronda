@@ -10,12 +10,16 @@ gem 'mysql2'
 gem 'jquery-rails'
 
 gem 'devise'
+gem 'omniauth'
 
+gem 'omniauth-google-oauth2', '>= 0.1.8'
+gem 'omniauth-twitter'
+
+# Group-specific gems:
 group :development, :test do
-
   gem 'rspec-rails'
-  
 end
+
 group :test do
 
  gem "database_cleaner"
