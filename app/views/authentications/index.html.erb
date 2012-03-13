@@ -1,8 +1,10 @@
 <h1> Sign In </h1>
 <% #title "Sign In" %>
 
-<% if @authentications %>
-  <% unless @authentications.empty? %>
+<% if current_user.authentications %>
+
+	 
+  <% unless current_user.authentications.empty? %>
     <p><strong>You can sign in to this account using:</strong></p>
     <div class="authentications">
       <% for authentication in @authentications %>
@@ -15,6 +17,7 @@
       <% end %>
       <div class="clear"></div>
     </div>
+	<br /> <br />
   <% end %>
   <p><strong>Add another service to sign in with:</strong></p>
 <% else %>

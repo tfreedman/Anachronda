@@ -43,27 +43,13 @@ class AuthenticationsController < ApplicationController
   # POST /authentications.json
   def create
 
-	auth = request.env["rack.auth"] 
-	current_user.authentications.create(:provider => auth ['provider'], :uid => auth['uid'])
+  
+	#auth = request.env["rack.auth"]
+	omniauth = request.env["omniauth.auth"]
+	current_user.authentications.find_or_create_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
 	flash[:notice] = "Authentication successful."
 	redirect_to authentications_url
-
 	
-	#auth = request.env["rack.auth"]
-    #@authentication = 
-	# current_user.authentications.find_or_create_by_provider_and_uid(auth['provider'], auth['uid'])
-
-    #respond_to do |format|
-    #  if @authentication.save
-    #    format.html { redirect_to @authentication, notice: 'Authentication was successfully created.' }
-    #    format.json { render json: @authentication, status: :created, location: @authentication }
-    #  else
-    #    format.html { render action: "new" }
-    #    format.json { render json: @authentication.errors, status: :unprocessable_entity }
-    #  end
-    #end
-	
-    
   end
 
   # PUT /authentications/1
