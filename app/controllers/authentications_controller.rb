@@ -46,7 +46,12 @@ class AuthenticationsController < ApplicationController
   
 	#auth = request.env["rack.auth"]
 	omniauth = request.env["omniauth.auth"]
-	current_user.authentications.find_or_create_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
+	#current_user.authentications.find_or_create_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
+	current_user.authentications.create!(:provider => omniauth['provider'], 
+	:uid => omniauth['uid'], 
+	:token => omniauth['credentials']['token'],
+    :secret => omniauth['credentials']['secret'])
+	
 	flash[:notice] = "Authentication successful."
 	redirect_to authentications_url
 	

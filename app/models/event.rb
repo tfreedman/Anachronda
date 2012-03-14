@@ -2,6 +2,7 @@ class Event < ActiveRecord::Base
 	belongs_to :user
 	
 	validates :title, :presence => {:message => 'cannot be blank, Event not saved'}
+	validates :category, :presence => {:message => 'cannot be blank, Event not saved'}
 	
 	validates :priority, :presence => {:message => 'cannot be blank. Event not saved'}
 	validates_numericality_of :priority, :only_integer =>true, 

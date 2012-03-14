@@ -8,18 +8,44 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 
 <div>
 <% if user_signed_in? %>
-    <%= current_user.email %> is logged in. If user is not you, click <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
-	
+    <h6 style="padding-left: 0px; margin-bottom: 1em">
+		<%= current_user.email %> is logged in. If user is not you, click <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
+	</h6>
+	<h5 style="padding-left: 0px;padding-top: 0px;margin-top: 0px"> 
+		Feeling social? <%= link_to 'Connect to social media.', authentications_path %>
+	</h5>
 <% else %>
+    <b>
     <%= link_to "Register", new_user_registration_path %> or <%= link_to "Sign In", new_user_session_path %>
-<% end %>
+	</b>
+	<% end %>
 </div>
+<header>	
+<nav><h1>
+		<%= Time.now.strftime('%l:%M %p') %>
+	</h1>
+
+	<%= image_tag "weather.png", {:alt=>"Sunny", :id => "weather"} %>
+
+</nav>
+			<div id="arrow-left"></div>
+			<div id="config-container"></div>
+			<a href="#">
+				<%= image_tag "config.png", {:alt=>"Settings", :id => "config"} %>
+			</a>
+			<br/>
+</header>
+<div id="overlay-t"></div>
+		<div id="overlay-r"></div>
+		<div id="overlay-b"></div>
+		<div id="overlay-l"></div>
+<h2><%= Time.now.strftime('%a %d, %b, %Y') %></h2>
+
 <%= yield %>
 
 </body>

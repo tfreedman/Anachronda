@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120311214216) do
+ActiveRecord::Schema.define(:version => 20120313221431) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 20120311214216) do
     t.string   "uid"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "token"
+    t.string   "secret"
   end
 
   add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
@@ -33,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20120311214216) do
     t.float    "loc_long"
     t.float    "loc_lat"
     t.integer  "priority",   :null => false
+    t.string   "category"
   end
 
   add_index "events", ["user_id"], :name => "index_events_on_user_id"
@@ -46,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20120311214216) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "category"
   end
 
   add_index "ideas", ["user_id"], :name => "index_ideas_on_user_id"

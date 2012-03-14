@@ -1,38 +1,56 @@
 <% if user_signed_in? %>
+		
+		<h3>Upcoming Tasks</h3>
+		<table>
+		<% prev_category = " " 
+		   first = true %>
+		<table>
+		
+		<% current_user.events.sort_by{|sortable| [sortable.category, sortable.start_time, -sortable.priority]}.each do |event| %>
+		  <% if event.end_time < Time.now.utc %>
+		  <% else %>
+			  <% unless (prev_category == event.category) %>
+				</table>
+				<% prev_category = event.category %>
+				<h4><%= prev_category %></h4>
+				<table>
+				
+			  <% end %>
+			  
+			  <tr>
+			  <% if (first == true) %>
+					<td><div class="arrow-right"></div></td>
 
-<h1>Listing events</h1>
+				<% first = false
+				   end %>
+			  <td class="time"><%= event.start_time.strftime('%l:%M %p') %></td>
+				<td class="event"><%= event.title %></td>
+				<td class="event"> (until <%= event.end_time.strftime('%l:%M %p') %>)</td>
+				
+				<td><%= link_to 'Show', event %></td>
+				<td><%= link_to 'Edit', edit_event_path(event) %></td>
+				<td><%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %></td>
+			  </tr>
+			  
+			<% end %>
+		<% end %>
+		</table>
+		<br /><br />
+		<br /><br />
+		
+		<h2><%= link_to 'New Event', new_event_path %>
+		<br /><br />
+		<%= link_to 'My Ideas (unscheduled events)', ideas_path %>
+		</h2>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Priority</th>
-    <th>Start time</th>
-    <th>End Time</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
-<% current_user.events.each do |event| %>
-  <tr>
-    <td><%= event.title %></td>
-    <td><%= event.priority %></td>
-    <td><%= event.start_time %></td>
-    <td><%= event.end_time %></td>
-    <td><%= link_to 'Show', event %></td>
-    <td><%= link_to 'Edit', edit_event_path(event) %></td>
-    <td><%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
+		<footer></footer>
 
-<br />
-<h2><%= link_to 'My Ideas (unscheduled events)', ideas_path %></h2>
 
-<br /><br />
-<%= link_to 'New Event', new_event_path %>
+
 
 
 <% else %>
-<h1> You must sign in before you can view any events </h1>
+<h2> You must sign in before you can view any events </h2>
 <% end %> 
+	
