@@ -3,7 +3,22 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+	@current = Array.new()
+	@upcoming = Array.new()
+	Event.all.map!{|checking_event|
+		if (checking_event.has_ended)
+			checking_event.destroy
+		elsif (checking_event.has_begun)
+			@current.push(checking_event)
+		else
+			@upcoming.push(checking_event)
+		end
+	}
+    #old_events = Event.where(:has_ended => true)
+	#old_events.each do |old_event|
+	#	old_event.destroy
+	#end
+
 
     respond_to do |format|
       format.html # index.html.erb

@@ -1,38 +1,88 @@
 <% if user_signed_in? %>
 		
-		<h3>Upcoming Tasks</h3>
-		<table>
+		<h3>Current Tasks</h3>
 		<% prev_category = " " 
 		   first = true %>
 		<table>
 		
-		<% current_user.events.sort_by{|sortable| [sortable.category, sortable.start_time, -sortable.priority]}.each do |event| %>
-		  <% if event.end_time < Time.now.utc %>
-		  <% else %>
-			  <% unless (prev_category == event.category) %>
-				</table>
-				<% prev_category = event.category %>
-				<h4><%= prev_category %></h4>
-				<table>
-				
-			  <% end %>
-			  
-			  <tr>
-			  <% if (first == true) %>
-					<td><div class="arrow-right"></div></td>
-
+		<% @current.sort_by{|sortable| [sortable.category, sortable.start_time, -sortable.priority]}.each do |event| %>
+		  
+		  <% unless (prev_category == event.category) %>
+			</table>
+			<% prev_category = event.category %>
+			<h4><%= prev_category %></h4>
+			<table>
+			
+		  <% end %>
+		  
+		  <tr>
+			<td>
+				<% if (first == true) %>
+					<div class="arrow-right"></div>
+					<b>
 				<% first = false
-				   end %>
-			  <td class="time"><%= event.start_time.strftime('%l:%M %p') %></td>
-				<td class="event"><%= event.title %></td>
-				<td class="event"> (until <%= event.end_time.strftime('%l:%M %p') %>)</td>
-				
-				<td><%= link_to 'Show', event %></td>
-				<td><%= link_to 'Edit', edit_event_path(event) %></td>
-				<td><%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %></td>
-			  </tr>
-			  
+				end %>
+			</td>
+		  <td class="time"><%= event.start_time.strftime('%l:%M %p') %></td>
+			<td class="event"><%= event.title %></td>
+			
+			<td class="event"> (until <%= event.end_time.strftime('%l:%M %p') %>
+			<% unless (event.end_time.today?) %>
+				<%= event.end_time.strftime('%a %d, %b, %Y') %>
 			<% end %>
+			)</td>
+			
+			
+			<td><%= link_to 'Show', event %></td>
+			<td><%= link_to 'Edit', edit_event_path(event) %></td>
+			<td><%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %></td>
+		  </tr>
+			  
+		<% end %>
+		</table>
+		<br />
+		<h3>Upcoming Tasks</h3>
+
+		<% prev_category = " " 
+		   first = true %>
+		<table>
+		
+		<% @upcoming.sort_by{|sortable| [sortable.category, sortable.start_time, -sortable.priority]}.each do |event| %>
+		  
+		  <% unless (prev_category == event.category) %>
+			</table>
+			<% prev_category = event.category %>
+			<h4><%= prev_category %></h4>
+			<table>
+			
+		  <% end %>
+		  
+		  <tr>
+			<td>
+				<% if (first == true) %>
+					<div class="arrow-right"></div>
+					<b>
+				<% first = false
+				end %>
+			</td>
+			
+			<td class="time"><%= event.start_time.strftime('%l:%M %p') %>
+			<% unless (event.start_time.today?) %>
+				<%= event.start_time.strftime('%a %d, %b, %Y') %>
+			<% end %>
+			</td>
+			<td class="event"><%= event.title %></td>
+			<td class="event"> (until <%= event.end_time.strftime('%l:%M %p') %>
+			<% unless (event.end_time.today?) %>
+				<%= event.end_time.strftime('%a %d, %b, %Y') %>
+			<% end %>
+			)</td>
+			
+			<td><%= link_to 'Show', event %></td>
+			<td><%= link_to 'Edit', edit_event_path(event) %></td>
+			<td><%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %></td>
+		  </tr>
+			  
 		<% end %>
 		</table>
 		<br /><br />
