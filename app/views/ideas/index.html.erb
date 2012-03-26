@@ -9,7 +9,7 @@
 		<% if current_user.ideas.empty? %>
 		
 		<% else %>
-			<% current_user.ideas.sort_by{|sortable| [sortable.category, sortable.start_time, -sortable.priority]}.each do |idea| %>
+			<% current_user.ideas.sort_by{|sortable| [sortable.category, -sortable.priority]}.each do |idea| %>
 			
 			  <% unless (prev_category == idea.category) %>
 				</table>
@@ -25,9 +25,8 @@
 
 				<% first = false
 				   end %>
-			  <td class="time"><%= idea.start_time.strftime('%l:%M %p') %></td>
 				<td class="event"><%= idea.title %></td>
-				<td class="event"> (until <%= idea.end_time.strftime('%l:%M %p') %>)</td>
+			
 				
 				<td><%= link_to 'Show', idea %></td>
 				<td><%= link_to 'Edit', edit_event_path(idea) %></td>

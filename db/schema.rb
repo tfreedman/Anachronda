@@ -38,8 +38,6 @@ ActiveRecord::Schema.define(:version => 20120313221431) do
     t.string   "category"
   end
 
-  add_index "events", ["user_id"], :name => "index_events_on_user_id"
-
   create_table "ideas", :force => true do |t|
     t.string   "title"
     t.integer  "priority"

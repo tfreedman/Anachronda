@@ -73,7 +73,7 @@
 			</td>
 			<td class="event"><%= event.title %></td>
 			<td class="event"> (until <%= event.end_time.strftime('%l:%M %p') %>
-			<% unless (event.end_time.today?) %>
+			<% unless (event.end_time.to_date === event.start_time.to_date) %>
 				<%= event.end_time.strftime('%a %d, %b, %Y') %>
 			<% end %>
 			)</td>
