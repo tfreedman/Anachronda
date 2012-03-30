@@ -15,6 +15,9 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2', '>= 0.1.8'
 gem 'omniauth-twitter'
 
+gem 'execjs'
+gem 'therubyracer', :platforms => :ruby
+
 # Group-specific gems:
 group :development, :test do
   gem 'rspec-rails'
