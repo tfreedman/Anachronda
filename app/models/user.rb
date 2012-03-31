@@ -28,16 +28,16 @@ class User < ActiveRecord::Base
 		
 		free_time.length.times do |event|
 			
-			if ((free_time[event][:end] - free_time[event][:start]) > scheduling_idea.duration)
+			if ((free_time[event][:end_time] - free_time[event][:start_time]) > scheduling_idea.duration)
 				new_possibilities.push(free_time[event])
 				
-				logger.info "THIS IDEA FITS!"
+				#logger.info "THIS IDEA FITS!"
 			end
 			
 			#Debugging to make sure scheduler's doing stuff correctly.
-			logger.info "Free Time Starts: #{(free_time[event][:start])}"
-			logger.info "Free Time Ends: #{(free_time[event][:end])}"
-			logger.info "Free Time Duration: #{(free_time[event][:end] - free_time[event][:start])}"
+			#logger.info "Free Time Starts: #{(free_time[event][:start_time])}"
+			#logger.info "Free Time Ends: #{(free_time[event][:end_time])}"
+			#logger.info "Free Time Duration: #{(free_time[event][:end_time] - free_time[event][:start_time])}"
 			
 		
 		end
@@ -59,10 +59,10 @@ class User < ActiveRecord::Base
 		
 		free_time.length.times do |event|
 			scheduling_ideas.length.times do |idea|
-				if (scheduling_ideas[idea].duration > (free_time[event][:end] - free_time[event][:start]))
-					break
-				else
+				if ((free_time[event][:end_time] - free_time[event][:start_time]) > scheduling_ideas[idea].duration)
 					new_idea_possibilities[idea].push(free_time[event])
+				else
+					break
 				end
 			end		
 		end
@@ -77,16 +77,16 @@ class User < ActiveRecord::Base
 		free_now = 0
 		if (@my_events[0].start_time > DateTime.now.utc)
 			free_time[0] = Hash.new
-			free_time[0][:start] = DateTime.now.utc
-			free_time[0][:end] = @my_events[0].start_time
+			free_time[0][:start_time] = DateTime.now.utc
+			free_time[0][:end_time] = @my_events[0].start_time
 			free_now = 1
 			
 		end
 		(@my_events.length - 1).times do |current|
 			
 			next_free_time = Hash.new
-			next_free_time[:start] = @my_events[current].end_time
-			next_free_time[:end] = @my_events[current+1].start_time
+			next_free_time[:start_time] = @my_events[current].end_time
+			next_free_time[:end_time] = @my_events[current+1].start_time
 			free_time.push(next_free_time)
 		end
 		
