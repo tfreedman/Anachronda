@@ -43,7 +43,31 @@ class User < ActiveRecord::Base
 		end
 		
 		return new_possibilities
+	end
+	
+	def schedule_all(scheduling_ideas)
+	
+		#Debugging to make sure scheduler's doing stuff correctly.
+		#logger.info "Scheduling Idea of duration: #{scheduling_idea.duration}"
+		free_time = self.get_breaks
 		
+		new_idea_possibilities = Array.new(scheduling_ideas.length)
+		
+		scheduling_ideas.length.times do |i|
+			new_idea_possibilities[i] = Array.new
+		end
+		
+		free_time.length.times do |event|
+			scheduling_ideas.length.times do |idea|
+				if (scheduling_ideas[idea].duration > (free_time[event][:end] - free_time[event][:start]))
+					break
+				else
+					new_idea_possibilities[idea].push(free_time[event])
+				end
+			end		
+		end
+		
+		return new_idea_possibilities
 	end
 	
 	def get_breaks
