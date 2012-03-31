@@ -1,9 +1,6 @@
 CloudSpiders::Application.routes.draw do
   
-  
-  resources :authentications
-
-	devise_for :users do
+  	devise_for :users do
 		
 		resources :ideas
 		resources :events
@@ -15,10 +12,10 @@ CloudSpiders::Application.routes.draw do
 	
 	resources :ideas do
 		resources :possibilities
-		
-		#member do
-			#get 'schedule_this'
-		#end
+		member do
+			get 'schedule_this'
+			get 'show_possibilities'
+		end
 	end
 	resources :events
     resources :authentications

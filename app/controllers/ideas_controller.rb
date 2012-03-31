@@ -1,9 +1,9 @@
 class IdeasController < ApplicationController
-	before_filter :authenticate_user!, :only => [:edit, :update, :destroy, :create, :new]
+	before_filter :authenticate_user!, :only => [:index, :edit, :update, :destroy, :create, :new, :schedule_this]
   # GET /ideas
   # GET /ideas.json
   def index
-    @ideas = Idea.all
+    @ideas = current_user.ideas.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -83,4 +83,59 @@ class IdeasController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def schedule_this
+    @idea = Idea.find(params[:id])
+	new_possibilities = current_user.schedule(@idea)
+	all_saved = true
+	if (new_possibilities.length > 0)
+		Possibility.delete_all(:idea_id => :id)
+		new_possibilities.each do |schedulable|
+			
+			@possibility = @idea.possibilities.new
+			@possibility.start_time = schedulable[:start]
+			@possibility.end_time = schedulable[:end]
+			@possibility.score = 10
+			
+			if @possibility.save
+				
+			else
+				all_saved = false
+				break
+			end
+			#logger.info "Schedulable Starts: #{(schedulable[:start])}"
+			#logger.info "Schedulable Ends: #{(schedulable[:end])}"
+			#logger.info "Idea Duration: #{@idea.duration}"
+			#logger.info "Schedulable Duration: #{(schedulable[:end] - schedulable[:start])}"
+		end
+	end
+	respond_to do |format|
+		if ((new_possibilities.length > 0) and (all_saved))
+			format.html { redirect_to @idea, notice: 'Possibilities have been discovered.' }
+			format.json { head :no_content }
+		elsif (all_saved)
+			format.html { redirect_to @idea, notice: "That idea doesn't fit in your schedule!" }
+			format.json { head :no_content }
+		else
+			format.html { redirect_to @idea, notice: "There were errors saving this ideas possibilities. 
+			                                          Sorry, about that. 
+													  Please try scheduling the idea again." }
+			format.json { head :no_content }
+		
+		end
+		
+    end
+  end
+  
+  
+  def show_possibilities
+	
+    @idea = Idea.find(params[:id])
+	@possibilities = @idea.possibilities.all
+	
+	respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @ideas }
+    end
+  end 
 end
