@@ -89,7 +89,7 @@ class IdeasController < ApplicationController
 	new_possibilities = current_user.schedule(@idea)
 	all_saved = true
 	if (new_possibilities.length > 0)
-		Possibility.delete_all(:idea_id => :id)
+		Possibility.delete_all(:idea_id => params[:id])
 		new_possibilities.each do |schedulable|
 			
 			@possibility = @idea.possibilities.new
@@ -111,7 +111,7 @@ class IdeasController < ApplicationController
 	end
 	respond_to do |format|
 		if ((new_possibilities.length > 0) and (all_saved))
-			format.html { redirect_to @idea, notice: 'Possibilities have been discovered.' }
+			format.html { redirect_to show_possibilities_idea_path(@idea), notice: 'Possibilities have been discovered.' }
 			format.json { head :no_content }
 		elsif (all_saved)
 			format.html { redirect_to @idea, notice: "That idea doesn't fit in your schedule!" }

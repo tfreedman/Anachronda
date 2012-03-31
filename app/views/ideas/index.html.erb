@@ -41,7 +41,9 @@
 		
 		<% end %>
 		<br />
-		<br /><br /><br />
+		<br /><br />
+		<h2><%= link_to 'Schedule All Ideas', schedule_all_ideas_user_path(current_user) %></h2>
+		<br />
 		<h2><%= link_to 'New Idea', new_idea_path %>
 		<br /><br />
 		<%= link_to 'My Events (scheduled)', events_path %></h2>

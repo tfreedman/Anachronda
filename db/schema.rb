@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120331132335) do
+ActiveRecord::Schema.define(:version => 20120331194601) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -38,6 +38,10 @@ ActiveRecord::Schema.define(:version => 20120331132335) do
     t.string   "category"
   end
 
+  add_index "events", ["category"], :name => "index_events_on_category"
+  add_index "events", ["end_time"], :name => "index_events_on_end_time"
+  add_index "events", ["priority"], :name => "index_events_on_priority"
+  add_index "events", ["start_time"], :name => "index_events_on_start_time"
   add_index "events", ["user_id"], :name => "index_events_on_user_id"
 
   create_table "ideas", :force => true do |t|
@@ -52,6 +56,10 @@ ActiveRecord::Schema.define(:version => 20120331132335) do
     t.string   "category"
   end
 
+  add_index "ideas", ["category"], :name => "index_ideas_on_category"
+  add_index "ideas", ["duration"], :name => "index_ideas_on_duration"
+  add_index "ideas", ["priority"], :name => "index_ideas_on_priority"
+  add_index "ideas", ["title"], :name => "index_ideas_on_title"
   add_index "ideas", ["user_id"], :name => "index_ideas_on_user_id"
 
   create_table "possibilities", :force => true do |t|
@@ -63,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20120331132335) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "possibilities", ["end_time"], :name => "index_possibilities_on_end_time"
   add_index "possibilities", ["idea_id"], :name => "index_possibilities_on_idea_id"
   add_index "possibilities", ["score"], :name => "index_possibilities_on_score"
   add_index "possibilities", ["start_time"], :name => "index_possibilities_on_start_time"

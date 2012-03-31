@@ -1,14 +1,15 @@
 CloudSpiders::Application.routes.draw do
   
   	devise_for :users do
-		
 		resources :ideas
 		resources :events
 		resources :authentications
-		#member do
-			#get 'schedule_all'
-		#end
 	end
+	resources :users, :only => [:index, :show] do
+		member do
+			get 'schedule_all_ideas'
+		end
+	end 
 	
 	resources :ideas do
 		resources :possibilities

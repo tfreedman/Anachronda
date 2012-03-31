@@ -1,18 +1,19 @@
 <p id="notice"><%= notice %></p>
 <% if user_signed_in? %>
 
-	<h3>Possibilities For:</h3>
-	<h5> <%= @idea.title %> </h5>
+	<h4>Possibilities for <%= @idea.title %></h4>
 	
 		<table>
-		<% @possibilities.each do |possibility| %>
-		  
-		  
-		  <tr>
+		
+		<tr>
 			<td><b>Start Time:</b></td>
 			<td><b>End Time:</b></td>
 			<td><b>Score:</b></td>
-		  </tr> 
+		</tr> 
+		<% @possibilities.each do |possibility| %>
+		  
+		  
+		  
 		  <tr>
 			<td><%= possibility.start_time %></td>
 			<td><%= possibility.end_time %></td>
