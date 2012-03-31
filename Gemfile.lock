@@ -196,6 +196,7 @@ DEPENDENCIES
   cucumber-rails
   database_cleaner
   devise
+  execjs
   factory_girl_rails
   jquery-rails
   launchy
@@ -206,4 +207,5 @@ DEPENDENCIES
   rails (= 3.2.2)
   rspec-rails
   sass-rails (~> 3.2.3)
+  therubyracer
   uglifier (>= 1.0.3)

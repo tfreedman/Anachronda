@@ -3,11 +3,27 @@ CloudSpiders::Application.routes.draw do
   
   resources :authentications
 
-	devise_for :users, :has_many => [:events, :ideas, :authentications]
+	devise_for :users do
+		
+		resources :ideas
+		resources :events
+		resources :authentications
+		#member do
+			#get 'schedule_all'
+		#end
+	end
 	
-	resources :ideas
+	resources :ideas do
+		resources :possibilities
+		
+		#member do
+			#get 'schedule_this'
+		#end
+	end
 	resources :events
     resources :authentications
+	
+	
 	root :to => "events#index"
 
 	match '/auth/:provider/callback' => 'authentications#create'

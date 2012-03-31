@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120313221431) do
+ActiveRecord::Schema.define(:version => 20120331132335) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(:version => 20120313221431) do
     t.string   "category"
   end
 
+  add_index "events", ["user_id"], :name => "index_events_on_user_id"
+
   create_table "ideas", :force => true do |t|
     t.string   "title"
     t.integer  "priority"
@@ -51,6 +53,19 @@ ActiveRecord::Schema.define(:version => 20120313221431) do
   end
 
   add_index "ideas", ["user_id"], :name => "index_ideas_on_user_id"
+
+  create_table "possibilities", :force => true do |t|
+    t.integer  "score"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer  "idea_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "possibilities", ["idea_id"], :name => "index_possibilities_on_idea_id"
+  add_index "possibilities", ["score"], :name => "index_possibilities_on_score"
+  add_index "possibilities", ["start_time"], :name => "index_possibilities_on_start_time"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

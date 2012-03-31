@@ -1,5 +1,7 @@
 class Idea < ActiveRecord::Base
 	belongs_to :user
+	has_many :possibilities
+	
 	validates :title, :presence => {:message => 'cannot be blank, Idea not saved'}
 	validates :category, :presence => {:message => 'cannot be blank, Idea not saved'}
 	
