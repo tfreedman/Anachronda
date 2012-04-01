@@ -1,5 +1,6 @@
 class IdeasController < ApplicationController
 	before_filter :authenticate_user!, :only => [:index, :edit, :update, :destroy, :create, :new, :schedule_this]
+	before_filter :authorize_user, :except => [:index, :new, :create]
   # GET /ideas
   # GET /ideas.json
   def index
@@ -136,4 +137,16 @@ class IdeasController < ApplicationController
       format.json { render json: @ideas }
     end
   end 
+  
+  def authorize_user
+	@idea = Idea.find(params[:id])
+	if (current_user.id == @idea.user_id)
+	  true
+	else
+		respond_to do |format|
+		  format.html { redirect_to ideas_path, notice: "You cannot view or modify ideas that are not your own!" }
+		  format.json { head :no_content }
+		end
+	end
+  end
 end

@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
 	before_filter :authenticate_user!, :only => [:edit, :update, :destroy, :create, :new]
+	before_filter :authorize_user, :except => [:index, :new, :create]
   # GET /events
   # GET /events.json
   def index
@@ -103,4 +104,17 @@ class EventsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def authorize_user
+	@event = Event.find(params[:id])
+	if (current_user.id == @event.user_id)
+	  true
+	else
+		respond_to do |format|
+		  format.html { redirect_to events_path, notice: "You cannot view or modify events that are not your own!" }
+		  format.json { head :no_content }
+		end
+	end
+  end
+  
 end
