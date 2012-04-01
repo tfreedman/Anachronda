@@ -2,6 +2,8 @@ class Idea < ActiveRecord::Base
 	belongs_to :user
 	has_many :possibilities
 	
+	before_save :process_category
+	
 	validates :title, :presence => {:message => 'cannot be blank, Idea not saved'}
 	validates :category, :presence => {:message => 'cannot be blank, Idea not saved'}
 	
@@ -15,4 +17,8 @@ class Idea < ActiveRecord::Base
 	:message => 'cannot be a negative number, and must be an integer. Idea not saved'
 	validates_numericality_of :duration, :greater_than => 0, 
 	:message => 'cannot be a negative number, nor can it be 0. Idea not saved'
+	
+	def process_category
+		self.category = category.capitalize.pluralize
+	end 
 end

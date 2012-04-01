@@ -71,8 +71,13 @@ class User < ActiveRecord::Base
 	end
 	
 	def get_breaks
-		@my_events = self.events.find(:all, :order => :start_time)
+	
 		free_time = Array.new
+		
+		@my_events = self.events.find(:all, :order => :start_time)
+		if (@my_events.empty?)
+			return free_time
+		end
 		
 		free_now = 0
 		if (@my_events[0].start_time > DateTime.now.utc)

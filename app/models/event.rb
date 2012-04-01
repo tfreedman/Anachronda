@@ -1,6 +1,8 @@
 class Event < ActiveRecord::Base
 	belongs_to :user
 	
+	before_save :process_category
+	
 	
 	validates :title, :presence => {:message => 'cannot be blank, Event not saved'}
 	validates :category, :presence => {:message => 'cannot be blank, Event not saved'}
@@ -28,6 +30,10 @@ class Event < ActiveRecord::Base
 	def start_must_be_after_current_time
 		errors.add(:start_time, "must be after current time") unless
        self.start_time > Time.now
+	end 
+	
+	def process_category
+		self.category = category.capitalize.pluralize
 	end 
 	
 end
