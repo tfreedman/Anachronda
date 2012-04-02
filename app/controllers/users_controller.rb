@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-#CONN = ActiveRecord::Base.connection
+#SQL_CONN = ActiveRecord::Base.connection
 	before_filter :authenticate_user!
   
   def schedule_all_ideas
@@ -50,7 +50,7 @@ class UsersController < ApplicationController
 			end
 		end
 		#sql = ("INSERT INTO possibilities (`score`, `start_time`, `end_time`, `idea_id`, `created_at`, `updated_at`) VALUES #{inserts.join(", ")}")
-		#CONN.execute sql
+		#SQL_CONN.execute sql
 	end
 	
 	timer_e = (Time.now - timer_s)
