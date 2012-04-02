@@ -93,7 +93,6 @@ class IdeasController < ApplicationController
 		Possibility.delete_all(:idea_id => params[:id])
 		new_possibilities.each do |schedulable|
 			
-			schedulable[:score] = 10
 			@possibility = @idea.possibilities.new(schedulable)
 			
 			if @possibility.save

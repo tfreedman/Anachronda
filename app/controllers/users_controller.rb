@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+#CONN = ActiveRecord::Base.connection
 	before_filter :authenticate_user!
   
   def schedule_all_ideas
@@ -20,42 +21,36 @@ class UsersController < ApplicationController
 			deletable.push(@ideas[index].id)
 		end
 	end
-
 	Possibility.delete_all(:idea_id => deletable)
 	
-	new_idea_possibilities.each_with_index  do |idea, index|
-		
-		if (idea.length > 0)
-			num_ideas_found+=1
+	#We wish to only make one, large, SQL call for efficiency
+	#(Further performance increases coming in the future)
+	ActiveRecord::Base.transaction do
+	
+	#inserts = []
+		new_idea_possibilities.each_with_index  do |idea, index|
 			
-			idea.each do |schedulable|
-				num_possibilities_found+=1
+			if (idea.length > 0)
+				num_ideas_found+=1
 				
-				##For now we're setting the score to 10.
-				##Score will be based on several things:
-				##Whether it fits, priority, amount of room...
-				##Perhaps time of day? (Worse scores past midnight?)
-				##Along with restrictions:
-				##Weather, etc.
-				##And things like:
-				##How many possibilities were found?
-				##Average priority of other ideas?
-				##etc. Equations will be here, probably.
-				
-				schedulable[:score] = 10
-				
-				@possibility = @ideas[index].possibilities.new(schedulable)
-				
-				if @possibility.save
+				idea.each do |schedulable|
+					num_possibilities_found+=1
+					#inserts.push "(#{schedulable[:score]}, '#{schedulable[:start_time].to_s(:db)}', '#{schedulable[:end_time].to_s(:db)}', #{@ideas[index].id}, '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}')"
+					@possibility = @ideas[index].possibilities.new(schedulable)
 					
-				else
-					all_saved = false
-					#break
+					if @possibility.save
+						
+					else
+						all_saved = false
+						#break
+					end
 				end
+			else
+			
 			end
-		else
-		
 		end
+		#sql = ("INSERT INTO possibilities (`score`, `start_time`, `end_time`, `idea_id`, `created_at`, `updated_at`) VALUES #{inserts.join(", ")}")
+		#CONN.execute sql
 	end
 	
 	timer_e = (Time.now - timer_s)

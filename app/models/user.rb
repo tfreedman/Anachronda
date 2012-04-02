@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
 		free_time.length.times do |event|
 			
 			if ((free_time[event][:end_time] - free_time[event][:start_time]) > scheduling_idea.duration)
+				free_time[event][:score] = self.get_score(scheduling_idea, event)
 				new_possibilities.push(free_time[event])
 				
 				#logger.info "THIS IDEA FITS!"
@@ -60,6 +61,7 @@ class User < ActiveRecord::Base
 		free_time.length.times do |event|
 			scheduling_ideas.length.times do |idea|
 				if ((free_time[event][:end_time] - free_time[event][:start_time]) > scheduling_ideas[idea].duration)
+					free_time[event][:score] = self.get_score(idea, event)
 					new_idea_possibilities[idea].push(free_time[event])
 				else
 					break
@@ -97,5 +99,20 @@ class User < ActiveRecord::Base
 		
 		return free_time
 		
+	end
+	
+	def get_score(idea, time_slot)
+		##For now we're setting the score to 10.
+		##Score will be based on several things:
+		##Whether it fits, priority, amount of room...
+		##Perhaps time of day? (Worse scores past midnight?)
+		##Along with restrictions:
+		##Weather, etc.
+		##And things like:
+		##How many possibilities were found?
+		##Average priority of other ideas?
+		##etc. Equations will be here, probably.
+		score = 10
+		return score
 	end
 end
