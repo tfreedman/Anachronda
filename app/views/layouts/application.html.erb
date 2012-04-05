@@ -13,8 +13,8 @@
 <nav><h1>
 		<%= Time.now.strftime('%l:%M %p') %>
 	</h1>
-
-	<%= image_tag "weather.png", {:alt=>"Sunny", :id => "weather"} %>
+	<% weather_overview = weather_helper(current_user) %>
+	<%= image_tag "weather.png", {:alt=>weather_overview, :id => "weather"} %>
 
 </nav>
 			<div id="arrow-left"></div>

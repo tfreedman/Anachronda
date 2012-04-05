@@ -18,6 +18,8 @@ gem 'omniauth-twitter'
 gem 'execjs'
 gem 'therubyracer', :platforms => :ruby
 
+gem 'barometer'
+
 # Group-specific gems:
 group :development, :test do
   gem 'rspec-rails'
