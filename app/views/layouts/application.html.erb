@@ -28,7 +28,7 @@
 		<div id="overlay-r"></div>
 		<div id="overlay-b"></div>
 		<div id="overlay-l"></div>
-<h2><%= Time.now.strftime('%a %d, %b, %Y') %></h2>
+<h2><%= Time.now.strftime("%A, %B #{Time.now.day.ordinalize}") %></h2>
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 
