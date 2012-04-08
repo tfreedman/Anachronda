@@ -8,6 +8,7 @@ CloudSpiders::Application.routes.draw do
 	resources :users, :only => [:index, :show] do
 		member do
 			get 'schedule_all_ideas'
+			post 'build_event_from_possibility'
 		end
 	end 
 	
@@ -16,6 +17,12 @@ CloudSpiders::Application.routes.draw do
 		member do
 			get 'schedule_this'
 			get 'show_possibilities'
+		end
+	end
+	resources :possibilities do
+		member do
+			get 'select'
+			get 'build_event'
 		end
 	end
 	resources :events

@@ -62,4 +62,49 @@ SQL_CONN = ActiveRecord::Base.connection
     end
   end 
   
+	def build_event_from_possibility
+	
+		@event = current_user.events.new(params[:event])
+		unless (@event.valid?)
+			logger.info "Event Starts: #{(@event[:start_time])}"
+			logger.info "Event Ends: #{(@event[:end_time])}"
+			logger.info "Event Title: #{@event[:title]}"
+			logger.info "Event Category: #{@event[:category]}"
+			logger.info "Event Priority: #{@event[:priority]}"
+			logger.info "Event User ID: #{@event[:user_id]}"
+			logger.info "Event ID: #{@event[:id]}"
+			
+		end
+		@idea = Idea.find(params[:idea_id])
+		
+		if (@idea.user_id == current_user.id)
+			if @event.save
+				Possibility.delete_all(:idea_id => params[:idea_id])
+				@idea.destroy
+				respond_to do |format|
+					format.html {redirect_to events_path, notice: "Event created!" }
+					format.json { head :no_content }
+				end
+			else
+				respond_to do |format|
+					errors_accrued = ""
+					@event.errors.each do |err|
+						errors_accrued += err.to_s
+					end
+					format.html { redirect_to ideas_path, notice: "There was an error creating the event. Make sure you set the end time to at least one minute after the start time :) "}
+				end
+			
+			end
+		
+		else
+			respond_to do |format|
+				format.html { redirect_to ideas_paths, notice: "That isn't your idea!" }
+			end
+		
+		end
+		
+		
+
+	end
+  
 end

@@ -1,0 +1,57 @@
+<h1>Creating Event</h1>
+
+<%= form_tag("/users/#{current_user.id}/build_event_from_possibility") do%>
+<% if @created_event.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+  <ul>
+  <% @event.errors.full_messages.each do |msg| %>
+	<li><%= msg %></li>
+  <% end %>
+  </ul>
+</div>
+<% end %>
+
+<h5>Required Information: <br/ ></h5>
+
+<div class="field">
+Title:
+<br />
+<%= text_field_tag 'event[title]', @idea.title %>
+</div>
+
+<div class="field">
+Category 
+<br />
+<%= text_field_tag 'event[category]', @idea.category %>
+</div>
+
+<div class="field">
+Priority 
+<br />
+<%= text_field_tag 'event[priority]', @idea.priority %>
+</div>
+
+<div class="field">
+Start time<br />
+<%= datetime_select("event", "start_time", :default => @possibility.start_time, :start_time => (Time.now + 120)) %>
+</div>
+<br />
+
+<div class="field">
+End time<br />
+<% ends_at = @possibility.start_time + @idea.duration %>
+<%= datetime_select("event", "end_time", :default => ends_at) %>
+</div>
+<br />
+
+
+<%= hidden_field_tag(:idea_id, @idea.id) %>
+
+<div class="actions">
+<%= submit_tag "Save" %>
+</div>
+<% end %>
+
+<%= link_to 'Show', show_possibilities_idea_path(@idea) %> 
