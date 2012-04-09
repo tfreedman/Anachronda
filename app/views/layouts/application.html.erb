@@ -4,31 +4,59 @@
 
   <title>CloudSpiders</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  
   <%= javascript_include_tag "application" %>
+  
   <%= csrf_meta_tags %>
 </head>
 <body>
 
+<div id="menu" align="right">
+        
+        <div id="menu_top">
+            <%= image_tag "config.png", {:alt=>"Settings", :id => "menu_icon"} %> <h1>CONFIG</h1>
+            <br />
+        </div>
+        
+        <dl>
+        <dt>GENERAL</dt>
+        <dd>City: Toronto, Ontario</dd>
+        <dd>Clock Format: 12 hour</dd>
+        <dd>Color: #abd03d</dd>
+        <br />
+        
+        <dt>ALARM</dt>
+        <dd>2 hours before appointments</dd>
+        
+        </dl>
+        
+</div>
+    
 <header>	
-<nav><h1>
-		<%= Time.now.strftime('%l:%M %p') %>
-	</h1>
+    <nav><h1>
+            <%= Time.now.strftime('%l:%M %p') %>
+        </h1>
 
-	<%= image_tag "weather.png", {:alt=>"Sunny", :id => "weather"} %>
+        <%= image_tag "weather.png", {:alt=>"Sunny", :id => "weather"} %>
 
-</nav>
-			<div id="arrow-left"></div>
-			<div id="config-container"></div>
-			<a href="#">
-				<%= image_tag "config.png", {:alt=>"Settings", :id => "config"} %>
-			</a>
-			<br/>
+    </nav>
+
+    <div id="arrow-left"></div>
+    <div id="config-container"></div>
+    <a href="#" id="settings">
+        <%= image_tag "config.png", {:alt=>"Settings", :id => "config"} %>
+    </a>
+    <br/>
+    
 </header>
+
 <div id="overlay-t"></div>
-		<div id="overlay-r"></div>
-		<div id="overlay-b"></div>
-		<div id="overlay-l"></div>
+<div id="overlay-r"></div>
+<div id="overlay-b"></div>
+<div id="overlay-l"></div>
+
 <h2><%= Time.now.strftime('%a %d, %b, %Y') %></h2>
+
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 

@@ -1,0 +1,305 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+
+
+*/
+
+.authentications {
+  margin-bottom: 30px;
+}
+
+.authentication {
+  width: 160px;
+  float: left;
+  background-color: #EEE;
+  border: solid 1px #999;
+  padding: 5px 10px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  position: relative;
+  margin-right: 10px;
+}
+
+.authentication .remove {
+  text-decoration: none;
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  color: #333;
+  padding: 2px 4px;
+  font-size: 10px;
+}
+
+.authentication .remove:hover {
+  color: #CCC;
+  background-color: #777;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+}
+
+.authentication img {
+  float: left;
+  margin-right: 10px;
+}
+
+.authentication .provider {
+  font-weight: bold;
+}
+
+.authentication .uid {
+  color: #666;
+  font-size: 11px;
+}
+
+.auth_provider img {
+  display: block;
+}
+
+.auth_provider {
+  float: left;
+  text-decoration: none;
+  margin-right: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+header, footer, nav, article, section {display:block}
+img {border: 0}
+
+body {
+	color: #574d4f;
+	font: 25px/1.3em "Segoe UI", Verdana, sans-serif;
+	margin: 0;
+	background: #fff
+}
+
+#overlay-t {
+	height: 0;
+	width: 100%;
+	position: absolute;
+	z-index: 10;
+	background-image: -ms-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(127, 127, 127, 0.1) 100%);	/* IE10 */ 
+	background-image: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(127, 127, 127, 0.1) 100%);	/* Mozilla Firefox */ 
+	background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(127, 127, 127, 0.1) 100%);	/* Opera */ 
+	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgba(0, 0, 0, 0)), color-stop(1, rgba(127, 127, 127, 0.1)));	/* Webkit (Safari/Chrome 10) */ 
+	background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(127, 127, 127, 0.1) 100%);	/* Webkit (Chrome 11+) */ 
+	background-image: linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(127, 127, 127, 0.1) 100%);	/* Proposed W3C Markup */ 
+}
+
+#overlay-r {
+	height: 100%;
+	width: 0;
+	right: 0;
+	position: absolute;
+	z-index: 10;
+	background-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(127, 127, 127, 0.1) 100%);	/* IE10 */ 
+	background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(127, 127, 127, 0.1) 100%);	/* Mozilla Firefox */ 
+	background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(127, 127, 127, 0.1) 100%);	/* Opera */ 
+	background-image: -webkit-gradient(linear, left top, right top, color-stop(0, rgba(0, 0, 0, 0)), color-stop(1, rgba(127, 127, 127, 0.1)));	/* Webkit (Safari/Chrome 10) */ 
+	background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(127, 127, 127, 0.1) 100%);	/* Webkit (Chrome 11+) */ 
+	background-image: linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(127, 127, 127, 0.1) 100%);	/* Proposed W3C Markup */ 
+}
+
+#overlay-b {
+	height: 0;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	z-index: 10;
+	background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(127, 127, 127, 0.1) 100%);	/* IE10 */ 
+	background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(127, 127, 127, 0.1) 100%);	/* Mozilla Firefox */ 
+	background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(127, 127, 127, 0.1) 100%);	/* Opera */ 
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, 0)), color-stop(1, rgba(127, 127, 127, 0.1)));	/* Webkit (Safari/Chrome 10) */ 
+	background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(127, 127, 127, 0.1) 100%);	/* Webkit (Chrome 11+) */ 
+	background-image: linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(127, 127, 127, 0.1) 100%);	/* Proposed W3C Markup */ 
+}
+
+#overlay-l {
+	height: 100%;
+	width: 0;
+	position: absolute;
+	z-index: 10;
+	background-image: -ms-linear-gradient(right, rgba(0, 0, 0, 0) 0%, rgba(127, 127, 127, 0.1) 100%);	/* IE10 */ 
+	background-image: -moz-linear-gradient(right, rgba(0, 0, 0, 0) 0%, rgba(127, 127, 127, 0.1) 100%); /* Mozilla Firefox */ 
+	background-image: -o-linear-gradient(right, rgba(0, 0, 0, 0) 0%, rgba(127, 127, 127, 0.1) 100%);	/* Opera */ 
+	background-image: -webkit-gradient(linear, right top, left top, color-stop(0, rgba(0, 0, 0, 0)), color-stop(1, rgba(127, 127, 127, 0.1)));	/* Webkit (Safari/Chrome 10) */ 
+	background-image: -webkit-linear-gradient(right, rgba(0, 0, 0, 0) 0%, rgba(127, 127, 127, 0.1) 100%);	/* Webkit (Chrome 11+) */
+	background-image: linear-gradient(right, rgba(0, 0, 0, 0) 0%, rgba(127, 127, 127, 0.1) 100%);	/* Proposed W3C Markup */ 
+}
+
+#arrow-left {
+	position: absolute;
+	top: 20px;
+	right: 100px;
+	width: 0;
+	height: 0;
+	border-top: 56px solid transparent;
+	border-bottom: 56px solid transparent;
+	border-right: 56px solid #abd03d
+}
+
+#config-container {
+	position: absolute;
+	right: 0;
+	top: 32px;
+	width: 100px;
+	height: 100px;
+	background: #abd03d
+}
+
+.arrow-right {
+	width: 0;
+	height: 0;
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent;
+	border-left: 10px solid #abd03d;
+	margin: 0 -80px 0 -30px
+}
+
+#config {
+	position: absolute;
+	right: 30px;
+	top: 35px
+}
+
+#weather {
+	position: relative;
+	top: 5px;
+	margin: 15px 0 0 20px
+}
+
+header {
+	background: #abd03d;
+	
+}
+
+h1 {
+	color: #FFF; 
+	font-size: 52px; 
+	padding-left: 25px; 
+	display: inline
+}
+
+h2 {
+	color: #abd03d; 
+	font-size: 30px;
+	padding: 12px 0 45px 25px
+}
+
+h3 {
+	font-size: 36px; 
+	padding: 20px 0 0 50px; 
+	font-weight: inherit
+}
+
+h4 {
+	font-size: 33px; 
+	padding-left: 70px; 
+	margin: 25px 0;
+	line-height: 110%;
+	font-weight: inherit
+}
+h5 {
+	font-size: 1.1em; 
+	padding-left: 70px; 
+	padding-top: 0.4em; 
+	margin: 0;
+	line-height: 110%;
+	font-weight: inherit
+}
+
+h6 {
+
+}
+
+
+h1, h2, h3 {text-transform: uppercase; line-height: 110%; margin: 0; }
+table {margin: 20px 0 20px 80px}
+.time {text-align: right; width: 100px}
+.event {font-weight: lighter}
+/* line 1, ../../app/assets/stylesheets/scaffolds.css.scss */
+body {
+  background-color: #fff;
+  color: #333;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+/* line 8, ../../app/assets/stylesheets/scaffolds.css.scss */
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+/* line 13, ../../app/assets/stylesheets/scaffolds.css.scss */
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+/* line 18, ../../app/assets/stylesheets/scaffolds.css.scss */
+a {
+  color: #000;
+}
+/* line 20, ../../app/assets/stylesheets/scaffolds.css.scss */
+a:visited {
+  color: #333;
+}
+/* line 22, ../../app/assets/stylesheets/scaffolds.css.scss */
+a:hover {
+  color: #fff;
+  background-color: #abd03d;
+}
+
+/* line 27, ../../app/assets/stylesheets/scaffolds.css.scss */
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+/* line 30, ../../app/assets/stylesheets/scaffolds.css.scss */
+#notice {
+  color: green;
+}
+
+/* line 33, ../../app/assets/stylesheets/scaffolds.css.scss */
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+/* line 38, ../../app/assets/stylesheets/scaffolds.css.scss */
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+/* line 45, ../../app/assets/stylesheets/scaffolds.css.scss */
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+/* line 54, ../../app/assets/stylesheets/scaffolds.css.scss */
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}

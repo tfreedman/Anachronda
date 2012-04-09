@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120331194601) do
+ActiveRecord::Schema.define(:version => 20120405000234) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -75,6 +75,20 @@ ActiveRecord::Schema.define(:version => 20120331194601) do
   add_index "possibilities", ["idea_id"], :name => "index_possibilities_on_idea_id"
   add_index "possibilities", ["score"], :name => "index_possibilities_on_score"
   add_index "possibilities", ["start_time"], :name => "index_possibilities_on_start_time"
+
+  create_table "user_preferences", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "country",           :default => "Canada"
+    t.string   "city",              :default => "Toronto"
+    t.string   "timezone",          :default => "Eastern Time (US & Canada)"
+    t.string   "primary_color",     :default => "ABD03D"
+    t.string   "secondary_color",   :default => "FFFFFF"
+    t.boolean  "infographics_mode", :default => false
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
+  end
+
+  add_index "user_preferences", ["user_id"], :name => "index_user_preferences_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
