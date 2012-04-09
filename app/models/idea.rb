@@ -15,8 +15,8 @@ class Idea < ActiveRecord::Base
 	validates :duration, :presence => {:message => 'cannot be blank. Idea not saved'}	
 	validates_numericality_of :duration, :only_integer =>true, 
 	:message => 'cannot be a negative number, and must be an integer. Idea not saved'
-	validates_numericality_of :duration, :greater_than => 0, 
-	:message => 'cannot be a negative number, nor can it be 0. Idea not saved'
+	validates_numericality_of :duration, :greater_than => 60, 
+	:message => 'should be at least one minute. Idea not saved'
 	
 	def process_category
 		self.category = category.capitalize.pluralize

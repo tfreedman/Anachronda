@@ -33,29 +33,28 @@
 </div>
     
 <header>	
-    <nav><h1>
-            <%= Time.now.strftime('%l:%M %p') %>
-        </h1>
 
-        <%= image_tag "weather.png", {:alt=>"Sunny", :id => "weather"} %>
+<nav><h1>
+		<%= Time.now.strftime('%l:%M %p') %>
+	</h1>
+	<% weather_overview = weather_helper(current_user) %>
+	<%= image_tag "weather.png", {:alt=>weather_overview, :id => "weather"} %>
 
-    </nav>
-
-    <div id="arrow-left"></div>
-    <div id="config-container"></div>
-    <a href="#" id="settings">
-        <%= image_tag "config.png", {:alt=>"Settings", :id => "config"} %>
-    </a>
-    <br/>
-    
+</nav>
+			<div id="arrow-left"></div>
+			<div id="config-container"></div>
+            <a href="#" id="settings">
+				<%= image_tag "config.png", {:alt=>"Settings", :id => "config"} %>
+			</a>
+			<br/>
 </header>
 
 <div id="overlay-t"></div>
-<div id="overlay-r"></div>
-<div id="overlay-b"></div>
-<div id="overlay-l"></div>
 
-<h2><%= Time.now.strftime('%a %d, %b, %Y') %></h2>
+		<div id="overlay-r"></div>
+		<div id="overlay-b"></div>
+		<div id="overlay-l"></div>
+<h2><%= Time.now.strftime("%A, %B #{Time.now.day.ordinalize}") %></h2>
 
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>

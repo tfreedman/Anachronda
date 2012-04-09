@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+	before_create {|user| user.build_user_preference}
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -9,6 +10,7 @@ class User < ActiveRecord::Base
 	has_many :events
 	has_many :ideas
 	has_many :authentications
+	has_one :user_preference
 	
 	# Include default devise modules. Others available are:
 	# :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
@@ -17,7 +19,9 @@ class User < ActiveRecord::Base
 
 	# Setup accessible (or protected) attributes for your model
 	attr_accessible :email, :password, :password_confirmation, :remember_me
-	
+	def add_preferences
+		
+	end
 	def schedule(scheduling_idea)
 	
 		#Debugging to make sure scheduler's doing stuff correctly.
