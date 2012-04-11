@@ -120,9 +120,20 @@ class EventsController < ApplicationController
   end
   
   def parse_datetime
-  
-	params[:event][:start_time] = DateTime.parse(params[:event][:start_time])
-	params[:event][:end_time] = DateTime.parse(params[:event][:end_time])
+	
+	start_time = DateTime.parse(params[:event][:start_time])
+	end_time = DateTime.parse(params[:event][:end_time])
+	
+	start_time = start_time.in_time_zone(current_user.user_preference.timezone)
+	end_time = end_time.in_time_zone(current_user.user_preference.timezone)
+	
+	offset = (start_time.utc_offset)/60/60
+	
+	adjusted_start_time = (start_time-offset.hours).utc
+	adjusted_end_time = (end_time-offset.hours).utc
+ 
+	params[:event][:start_time] = adjusted_start_time
+	params[:event][:end_time] = adjusted_end_time
   end
   
 end

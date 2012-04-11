@@ -35,6 +35,11 @@
 <header>	
 
 <nav><h1 id="clock">
+		<% if user_signed_in?
+				user_time_zone = current_user.user_preference.timezone
+			else
+				user_time_zone = "UTC"
+			end %>
 		<%= Time.now.strftime('%l:%M %p') %>
 	</h1>
 	<% weather_overview = weather_helper(current_user) %>
