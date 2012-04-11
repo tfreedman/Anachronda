@@ -34,12 +34,11 @@
     
 <header>	
 
-<nav><h1>
+<nav><h1 id="clock">
 		<%= Time.now.strftime('%l:%M %p') %>
 	</h1>
 	<% weather_overview = weather_helper(current_user) %>
-	<%= image_tag "weather.png", {:alt=>weather_overview, :id => "weather"} %>
-
+	<%= image_tag "weather/#{weather_overview}.png", {:alt=>weather_overview, :id => "weather"} %>
 </nav>
 			<div id="arrow-left"></div>
 			<div id="config-container"></div>
@@ -56,16 +55,16 @@
 		<div id="overlay-l"></div>
 <h2><%= Time.now.strftime("%A, %B #{Time.now.day.ordinalize}") %></h2>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<p id="notice" class="notice"><%= notice %></p>
+<p id="alert" class="alert"><%= alert %></p>
 
 <%= yield %>
 <div align = "center">
 <% if user_signed_in? %>
-    <h6 style="padding-left: 0px; margin-bottom: 1em">
+    <h6>
 		<%= current_user.email %> is logged in. If user is not you, click <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
 	</h6>
-	<h5 style="padding-left: 0px;padding-top: 0px;margin-top: 0px"> 
+	<h5> 
 		Feeling social? <%= link_to 'Connect to social media.', authentications_path %>
 	</h5>
 <% else %>

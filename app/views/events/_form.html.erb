@@ -25,7 +25,7 @@
   <div class="field">
     <%= f.label :priority %><br />
 	<% priority_list = get_priorities %>
-	<%= select_tag(:priority, priority_list) %>
+	<%= select_tag('event[priority]', priority_list) %>
   </div>
   <div class="field">
     <%= f.label :start_time %><br />

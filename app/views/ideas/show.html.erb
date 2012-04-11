@@ -1,35 +1,35 @@
-<p id="notice"><%= notice %></p>
+<div id=spaceout>
+    <p>
+      <b>Title:</b>
+      <%= @idea.title %>
+    </p>
 
-<p>
-  <b>Title:</b>
-  <%= @idea.title %>
-</p>
+    <p>
+      <b>Priority:</b>
+      <%= @idea.priority %>
+    </p>
 
-<p>
-  <b>Priority:</b>
-  <%= @idea.priority %>
-</p>
+    <p>
+      <b>Duration:</b>
+      <%= @idea.duration %>
+    </p>
 
-<p>
-  <b>Duration:</b>
-  <%= @idea.duration %>
-</p>
+    <p>
+      <b>Loc long:</b>
+      <%= @idea.loc_long %>
+    </p>
 
-<p>
-  <b>Loc long:</b>
-  <%= @idea.loc_long %>
-</p>
+    <p>
+      <b>Loc lat:</b>
+      <%= @idea.loc_lat %>
+    </p>
 
-<p>
-  <b>Loc lat:</b>
-  <%= @idea.loc_lat %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= @idea.user %>
-</p>
+    <p>
+      <b>User:</b>
+      <%= @idea.user %>
+    </p>
 
 
-<%= link_to 'Edit', edit_idea_path(@idea) %> |
-<%= link_to 'Back', ideas_path %>
+    <%= link_to 'Edit', edit_idea_path(@idea) %> |
+    <%= link_to 'Back', ideas_path %>
+</div>

@@ -103,28 +103,33 @@ body {
 	margin: 15px 0 0 20px
 }
 
+#spaceout
+{
+    margin: 30px 30px 30px 30px;
+}
+
 header {
 	background: #abd03d;
 	
 }
 
 h1 {
-	color: #FFF; 
+	color: #abd03d; 
 	font-size: 52px; 
 	padding-left: 25px; 
-	display: inline
+	display: inline;
 }
 
 h2 {
 	color: #abd03d; 
 	font-size: 30px;
-	padding: 12px 0 45px 25px
+	padding: 12px 0 45px 25px;
 }
 
 h3 {
 	font-size: 36px; 
 	padding: 20px 0 0 50px; 
-	font-weight: inherit
+	font-weight: inherit;
 }
 
 h4 {
@@ -132,19 +137,19 @@ h4 {
 	padding-left: 70px; 
 	margin: 25px 0;
 	line-height: 110%;
-	font-weight: inherit
+	font-weight: inherit;
 }
 h5 {
 	font-size: 1.1em; 
-	padding-left: 70px; 
-	padding-top: 0.4em; 
-	margin: 0;
+	padding: 0 0 0 0; 
+	margin: 0 0 25px 0;
 	line-height: 110%;
-	font-weight: inherit
+	font-weight: inherit;
 }
 
 h6 {
-
+    margin: 40px 0 8px 0;
+    padding-left: 0px;
 }
 h1, h2, h3 {text-transform: uppercase; line-height: 110%; margin: 0; }
 table {margin: 20px 0 20px 80px}

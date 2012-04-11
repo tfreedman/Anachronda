@@ -1,5 +1,4 @@
-<p id="notice"><%= notice %></p>
-<h3>
+<h3 id="spaceout">
 <p>
   <b>Title:</b>
   <%= @event.title %>
@@ -19,10 +18,12 @@
   <b>End Time:</b>
   <%= @event.end_time %>
 </p>
+</h3>
 
+<h3>
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Destroy', @event, confirm: 'Are you sure?', method: :delete %> 
-
 </h3>
+
 <br / >
 <h3><%= link_to 'Return to events schedule', events_path %></h3>

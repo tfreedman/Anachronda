@@ -13,7 +13,7 @@
 </div>
 <% end %>
 
-<h5>Required Information: <br/ ></h5>
+<h5>Required Information: <br /></h5>
 
 <div class="field">
 Title:
@@ -32,20 +32,20 @@ Priority
 <br />
 <%= text_field_tag 'event[priority]', @idea.priority %>
 </div>
+<br />
 
 <div class="field">
-Start time<br />
-<%= datetime_select("event", "start_time", :default => @possibility.start_time, :start_time => (Time.now + 120)) %>
+Start Time<br />
+<%= text_field_tag 'event[start_time]', @possibility.start_time.strftime("%d-%m-%Y %R"), :id => 'start_time', :as => :string %>
 </div>
 <br />
 
 <div class="field">
-End time<br />
+End Time<br />
 <% ends_at = @possibility.start_time + @idea.duration %>
-<%= datetime_select("event", "end_time", :default => ends_at) %>
+<%= text_field_tag 'event[end_time]', ends_at.strftime("%d-%m-%Y %R"), :id => 'end_time', :as => :string %>
 </div>
 <br />
-
 
 <%= hidden_field_tag(:idea_id, @idea.id) %>
 

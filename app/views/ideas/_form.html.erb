@@ -22,10 +22,11 @@
   </div>
   <div class="field">
     <%= f.label :priority %><br />
-    <%= f.number_field :priority %>
+	<% priority_list = get_priorities %>
+	<%= select_tag('idea[priority]', priority_list) %>
   </div>
   <div class="field">
-    <%= f.label :duration %><br />
+    <%= f.label :duration %><%= f.label " (TODO timepicker)" %><br />
     <%= f.number_field :duration %>
   </div>
   <br />

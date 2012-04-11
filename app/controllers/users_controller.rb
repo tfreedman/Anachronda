@@ -63,7 +63,10 @@ SQL_CONN = ActiveRecord::Base.connection
   end 
   
 	def build_event_from_possibility
-	
+            
+        params[:event][:start_time] = DateTime.parse(params[:event][:start_time])
+        params[:event][:end_time] = DateTime.parse(params[:event][:end_time])
+        
 		@event = current_user.events.new(params[:event])
 		unless (@event.valid?)
 			logger.info "Event Starts: #{(@event[:start_time])}"
