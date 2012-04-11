@@ -1,6 +1,9 @@
 $(function() {
     
-    $("#start_time").datetimepicker();
+    $("#start_time").datetimepicker({
+    dateFormat: 'dd-mm-yy'});
+    $("#end_time").datetimepicker({
+    dateFormat: 'dd-mm-yy'});
     
     $("img#config").click(function(e) {
             $("#menu").show("blind", null, 500, null);

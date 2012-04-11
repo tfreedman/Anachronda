@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
 	before_filter :authenticate_user!, :only => [:edit, :update, :destroy, :create, :new]
 	before_filter :authorize_user, :except => [:index, :new, :create]
+	before_filter :parse_datetime, :only => [:create, :update]
+	
   # GET /events
   # GET /events.json
   def index
@@ -62,8 +64,9 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-	
+  
     @event = current_user.events.new(params[:event])
+	@event.priority = params[:priority].to_i
 	#@event.user = current_user
 	
     respond_to do |format|
@@ -81,6 +84,7 @@ class EventsController < ApplicationController
   # PUT /events/1.json
   def update
     @event = Event.find(params[:id])
+	@event.priority = params[:priority].to_i
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
@@ -115,6 +119,12 @@ class EventsController < ApplicationController
 		  format.json { head :no_content }
 		end
 	end
+  end
+  
+  def parse_datetime
+  
+	params[:event][:start_time] = DateTime.parse(params[:event][:start_time])
+	params[:event][:end_time] = DateTime.parse(params[:event][:end_time])
   end
   
 end
