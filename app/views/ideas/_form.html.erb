@@ -11,7 +11,6 @@
     </div>
   <% end %>
 
-    <h5>Required: <br/ ></h5>
   <div class="field">
     <%= f.label :title %><br />
     <%= f.text_field :title %>
@@ -26,18 +25,8 @@
 	<%= select_tag('idea[priority]', priority_list) %>
   </div>
   <div class="field">
-    <%= f.label :duration %><%= f.label " (TODO timepicker)" %><br />
-    <%= f.number_field :duration %>
-  </div>
-  <br />
-    <h5>Optional: <br/ ></h5>
-  <div class="field">
-    <%= f.label :loc_long %><br />
-    <%= f.text_field :loc_long %>
-  </div>
-  <div class="field">
-    <%= f.label :loc_lat %><br />
-    <%= f.text_field :loc_lat %>
+    <%= f.label :duration %><br />
+    <%= f.text_field :duration, :id => 'duration', :as => :string, :value => format_duration(@idea.duration) %>
   </div>
   <div class="actions">
     <%= f.submit %>

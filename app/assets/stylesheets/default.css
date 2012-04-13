@@ -103,14 +103,12 @@ body {
 	margin: 15px 0 0 20px
 }
 
-#spaceout
-{
-    margin: 30px 30px 30px 30px;
+#white {
+    color: white;
 }
 
 header {
-	background: #abd03d;
-	
+	background: #abd03d;	
 }
 
 h1 {
@@ -123,7 +121,7 @@ h1 {
 h2 {
 	color: #abd03d; 
 	font-size: 30px;
-	padding: 12px 0 45px 25px;
+	padding: 12px 0 12px 25px;
 }
 
 h3 {
@@ -151,8 +149,23 @@ h6 {
     margin: 40px 0 8px 0;
     padding-left: 0px;
 }
+
 h1, h2, h3 {text-transform: uppercase; line-height: 110%; margin: 0; }
+
 table {margin: 20px 0 20px 80px}
+
 .time {text-align: right; width: 100px}
 .event {font-weight: lighter}
+
+form {
+    margin: 30px 30px 20px 30px;
+}
+
+form div {
+    margin-bottom: 5px;
+}
+
+#links {
+    margin-left: 30px;
+}
 

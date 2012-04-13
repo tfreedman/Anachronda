@@ -24,16 +24,16 @@
   </div>
   <div class="field">
     <%= f.label :priority %><br />
-	<% priority_list = get_priorities %>
+	<% priority_list = get_priorities(@event.priority) %>
 	<%= select_tag('event[priority]', priority_list) %>
   </div>
   <div class="field">
     <%= f.label :start_time %><br />
-    <%= f.text_field :start_time, :id => 'start_time', :as => :string%>
+    <%= f.text_field :start_time, :id => 'start_time', :as => :string, :value => format_date_input(@event.start_time) %>
   </div>
   <div class="field">
     <%= f.label :end_time %><br />
-    <%= f.text_field :end_time, :id => 'end_time', :as => :string %>
+    <%= f.text_field :end_time, :id => 'end_time', :as => :string, :value => format_date_input(@event.end_time) %>
   </div>
   <div class="actions">
     <%= f.submit %>

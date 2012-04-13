@@ -1,6 +1,7 @@
 class IdeasController < ApplicationController
 	before_filter :authenticate_user!, :only => [:index, :edit, :update, :destroy, :create, :new, :schedule_this]
 	before_filter :authorize_user, :except => [:index, :new, :create]
+	before_filter :parse_duration, :only => [:create, :update]
   # GET /ideas
   # GET /ideas.json
   def index
@@ -148,4 +149,16 @@ class IdeasController < ApplicationController
 		end
 	end
   end
+  
+  
+  def parse_duration
+	duration_strings = params[:idea][:duration].split(':')
+    if (duration_strings.length > 1)
+        duration = duration_strings[0].to_i * 3600 + duration_strings[1].to_i * 60
+    else
+        duration = duration_strings[0].to_i * 60
+    end
+    params[:idea][:duration] = duration
+  end
+  
 end

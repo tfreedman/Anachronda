@@ -14,27 +14,30 @@
 <div id="menu" align="right">
         
         <div id="menu_top">
-            <%= image_tag "config.png", {:alt=>"Settings", :id => "menu_icon"} %> <h1>CONFIG</h1>
+            <%= image_tag "config.png", {:alt=>"Settings", :id => "menu_icon"} %> <h1 id="white">CONFIG</h1>
             <br />
         </div>
-        
+        <% if user_signed_in? %>
         <dl>
         <dt>GENERAL</dt>
-        <dd>City: Toronto, Ontario</dd>
-        <dd>Clock Format: 12 hour</dd>
-        <dd>Color: #abd03d</dd>
+        <dd>City: <%=current_user.user_preference.city%>, <%=current_user.user_preference.country%> </dd>
+        <dd>Timezone: <%=current_user.user_preference.timezone%></dd>
+        <%-# <dd>Clock Format: 24 hour</dd> -%>
+        <dd>Color: #<%=current_user.user_preference.primary_color%></dd>
         <br />
         
         <dt>ALARM</dt>
         <dd>2 hours before appointments</dd>
         
         </dl>
+        <% else %>
         
+        <% end %>
 </div>
     
 <header>	
 
-<nav><h1 id="clock">
+<nav><h1 id="white">
 		<% if user_signed_in?
 				user_time_zone = current_user.user_preference.timezone
 			else

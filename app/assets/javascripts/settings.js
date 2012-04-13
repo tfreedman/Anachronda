@@ -5,6 +5,8 @@ $(function() {
     $("#end_time").datetimepicker({
     dateFormat: 'dd-mm-yy'});
     
+    $('#duration').timepicker({});
+    
     $("img#config").click(function(e) {
             $("#menu").show("blind", null, 500, null);
             e.stopPropagation();

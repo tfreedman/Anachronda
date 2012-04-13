@@ -3,7 +3,7 @@
 <h3 style="margin-top:0; padding-top:0;"> Sign In, and Sync: </h3>
 <% #title "Sign In" %>
 <br />
-<div style="margin-left: 7em;">
+<div style="margin-left: 60px;">
 <% if current_user.authentications %>
 
 	 
@@ -47,7 +47,7 @@
 <br />
 <br />
 <h5>
-<%= link_to 'My Events', events_path %></h2>
+<%= link_to 'Back', events_path, :style => "margin-left: 55px;" %>
 </h5>
 <% else %>
 <h2> You must 

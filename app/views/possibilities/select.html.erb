@@ -1,57 +1,54 @@
 <h1>Creating Event</h1>
 
 <%= form_tag("/users/#{current_user.id}/build_event_from_possibility") do%>
-<% if @created_event.errors.any? %>
-<div id="error_explanation">
-  <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+  <% if @created_event.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
-  <ul>
-  <% @event.errors.full_messages.each do |msg| %>
-	<li><%= msg %></li>
+    <ul>
+    <% @event.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
   <% end %>
-  </ul>
-</div>
+
+  <h5>Required Information: <br /></h5>
+
+  <div class="field">
+  Title:
+  <br />
+  <%= text_field_tag 'event[title]', @idea.title %>
+  </div>
+
+  <div class="field">
+  Category 
+  <br />
+  <%= text_field_tag 'event[category]', @idea.category %>
+  </div>
+  
+  <div class="field">
+    Priority <br />
+	<% priority_list = get_priorities(@idea.priority) %>
+	<%= select_tag('event[priority]', priority_list) %>
+  </div>
+
+  <div class="field">
+  Start Time<br />
+  <%= text_field_tag 'event[start_time]', format_date_input(@possibility.start_time), :id => 'start_time', :as => :string %>
+  </div>
+
+  <div class="field">
+  End Time<br />
+  <% ends_at = @possibility.start_time + @idea.duration %>
+  <%= text_field_tag 'event[end_time]', format_date_input(ends_at), :id => 'end_time', :as => :string %>
+  </div>
+
+  <%= hidden_field_tag(:idea_id, @idea.id) %>
+
+  <div class="actions">
+  <%= submit_tag "Save" %>
+  </div>
 <% end %>
 
-<h5>Required Information: <br /></h5>
-
-<div class="field">
-Title:
-<br />
-<%= text_field_tag 'event[title]', @idea.title %>
-</div>
-
-<div class="field">
-Category 
-<br />
-<%= text_field_tag 'event[category]', @idea.category %>
-</div>
-
-<div class="field">
-Priority 
-<br />
-<%= text_field_tag 'event[priority]', @idea.priority %>
-</div>
-<br />
-
-<div class="field">
-Start Time<br />
-<%= text_field_tag 'event[start_time]', @possibility.start_time.strftime("%d-%m-%Y %R"), :id => 'start_time', :as => :string %>
-</div>
-<br />
-
-<div class="field">
-End Time<br />
-<% ends_at = @possibility.start_time + @idea.duration %>
-<%= text_field_tag 'event[end_time]', ends_at.strftime("%d-%m-%Y %R"), :id => 'end_time', :as => :string %>
-</div>
-<br />
-
-<%= hidden_field_tag(:idea_id, @idea.id) %>
-
-<div class="actions">
-<%= submit_tag "Save" %>
-</div>
-<% end %>
-
-<%= link_to 'Show', show_possibilities_idea_path(@idea) %> 
+<%= link_to 'Back', show_possibilities_idea_path(@idea), :id => "links" %> 

@@ -1,4 +1,4 @@
-<div id=spaceout>
+<h3><div>
     <p>
       <b>Title:</b>
       <%= @idea.title %>
@@ -6,25 +6,15 @@
 
     <p>
       <b>Priority:</b>
-      <%= @idea.priority %>
+      <%= get_priority_name(@idea.priority) %>
     </p>
 
     <p>
       <b>Duration:</b>
-      <%= @idea.duration %>
+      <%= format_duration(@idea.duration) %>
     </p>
 
-    <p>
-      <b>Loc long:</b>
-      <%= @idea.loc_long %>
-    </p>
-
-    <p>
-      <b>Loc lat:</b>
-      <%= @idea.loc_lat %>
-    </p>
-
-    <p>
+    <p style="visibility:hidden">
       <b>User:</b>
       <%= @idea.user %>
     </p>
@@ -32,4 +22,4 @@
 
     <%= link_to 'Edit', edit_idea_path(@idea) %> |
     <%= link_to 'Back', ideas_path %>
-</div>
+</div></h3>

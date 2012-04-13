@@ -15,10 +15,10 @@
 		  
 		  
 		  <tr>
-			<td><%= possibility.start_time %></td>
-			<td><%= possibility.end_time %></td>
+			<td><%= format_date_long(possibility.start_time) %></td>
+			<td><%= format_date_long(possibility.end_time) %></td>
 			<td><%= possibility.score %></td>
-			<td><%= link_to 'Choose me!', select_possibility_path(possibility) %></td>
+			<td><%= link_to 'Choose me!', select_possibility_path(possibility), :id => "links" %></td>
 		  </tr>
 		<% end %>
 		</table>
@@ -37,5 +37,7 @@
 <h2> You must sign in before you can view these possibilities. </h2>
 <% end %>
 
-<%= link_to 'Edit', edit_idea_path(@idea) %> |
-<%= link_to 'Back', ideas_path %>
+<div id="links">
+    <%= link_to 'Edit', edit_idea_path(@idea) %> |
+    <%= link_to 'Back', ideas_path %>
+</div>

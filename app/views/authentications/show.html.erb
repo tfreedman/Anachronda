@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <b>User:</b>
   <%= @authentication.user %>
@@ -15,6 +13,7 @@
   <%= @authentication.uid %>
 </p>
 
-
-<%= link_to 'Edit', edit_authentication_path(@authentication) %> |
-<%= link_to 'Back', authentications_path %>
+<div id="links">
+    <%= link_to 'Edit', edit_authentication_path(@authentication) %> |
+    <%= link_to 'Back', authentications_path %>
+</div>

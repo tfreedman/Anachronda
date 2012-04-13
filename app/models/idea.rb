@@ -19,6 +19,7 @@ class Idea < ActiveRecord::Base
 	:message => 'should be at least one minute. Idea not saved'
 	
 	def process_category
-		self.category = category.capitalize.pluralize
+		self.category = category.capitalize
 	end 
+    
 end

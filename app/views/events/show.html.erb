@@ -1,4 +1,4 @@
-<h3 id="spaceout">
+<h3>
 <p>
   <b>Title:</b>
   <%= @event.title %>
@@ -6,17 +6,17 @@
 
 <p>
   <b>Priority:</b>
-  <%= @event.priority %>
+  <%= get_priority_name(@event.priority) %>
 </p>
 
 <p>
   <b>Start time:</b>
-  <%= @event.start_time %>
+  <%= format_date_long(@event.start_time) %>
 </p>
 
 <p>
   <b>End Time:</b>
-  <%= @event.end_time %>
+  <%= format_date_long(@event.end_time) %>
 </p>
 </h3>
 

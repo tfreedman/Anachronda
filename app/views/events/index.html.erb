@@ -15,7 +15,7 @@
 			
 		  <% end %>
 		  
-		  <tr>
+		  <tr onclick="location.href='/events/<%= event.id %>'">
 			<td>
 				<% if (first == true) %>
 					<div class="arrow-right"></div>
@@ -32,10 +32,6 @@
 			<% end %>
 			)</td>
 			
-			
-			<td><%= link_to 'Show', event %></td>
-			<td><%= link_to 'Edit', edit_event_path(event) %></td>
-			<td><%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %></td>
 		  </tr>
 			  
 		<% end %>
@@ -58,13 +54,7 @@
 		  <% end %>
 		  
 		  <tr onclick="location.href='/events/<%= event.id %>'"> 
-			<td>
-				<% if (first == true) %>
-					<div class="arrow-right"></div>
-					<b>
-				<% first = false
-				end %>
-			</td>
+			<td></td>
 			
 			<td class="time"><%= event.start_time.strftime('%l:%M %p') %>
 			<% unless (event.start_time.today?) %>
