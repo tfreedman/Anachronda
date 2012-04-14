@@ -4,10 +4,16 @@ module OptionsForCategoryHelper
         
         list = ["Work", "Travel", "Appointments", "Meals", "Entertainment", "Outdoor Activities", "New..."]
         
-        if list.include? selected
-            categories = options_for_select(list,"#{selected}")
+        if selected
+        
+            if list.include? selected
+                categories = options_for_select(list,"#{selected}")
+            else
+                categories = options_for_select(list,"New...")
+            end
+            
         else
-            categories = options_for_select(list,"New...")
+            categories = options_for_select(list)
         end
         
 		return categories
