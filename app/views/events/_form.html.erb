@@ -20,7 +20,12 @@
   </div>
   <div class="field">
     <%= f.label :category %><br />
-    <%= f.text_field :category %>
+	<% category_list = get_categories(@event.category) %>
+	<%= select_tag('event[category]', category_list, :id => "category_list") %>
+  </div>
+  <div class="field" id="new_category">
+    <%= f.label "New Category" %><br />
+    <%= f.text_field :category, :id => "category_name" %>
   </div>
   <div class="field">
     <%= f.label :priority %><br />

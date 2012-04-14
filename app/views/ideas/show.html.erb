@@ -3,12 +3,17 @@
       <b>Title:</b>
       <%= @idea.title %>
     </p>
-
+    
+    <p>
+      <b>Category:</b>
+      <%= @idea.category %>
+    </p>
+    
     <p>
       <b>Priority:</b>
       <%= get_priority_name(@idea.priority) %>
     </p>
-
+    
     <p>
       <b>Duration:</b>
       <%= format_duration(@idea.duration) %>

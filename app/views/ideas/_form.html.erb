@@ -17,11 +17,16 @@
   </div>
   <div class="field">
     <%= f.label :category %><br />
-    <%= f.text_field :category %>
+	<% category_list = get_categories(@idea.category) %>
+	<%= select_tag('idea[category]', category_list, :id => "category_list") %>
+  </div>
+  <div class="field" id="new_category">
+    <%= f.label "New Category" %><br />
+    <%= f.text_field :category, :id => "category_name" %>
   </div>
   <div class="field">
     <%= f.label :priority %><br />
-	<% priority_list = get_priorities %>
+	<% priority_list = get_priorities(@idea.priority) %>
 	<%= select_tag('idea[priority]', priority_list) %>
   </div>
   <div class="field">
