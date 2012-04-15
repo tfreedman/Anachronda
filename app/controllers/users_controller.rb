@@ -110,8 +110,19 @@ SQL_CONN = ActiveRecord::Base.connection
 	
 	def parse_datetime
 	
-		start_time = DateTime.parse(params[:event][:start_time])
-		end_time = DateTime.parse(params[:event][:end_time])
+		begin
+			start_time = DateTime.parse(params[:event][:start_time])
+		rescue
+			
+			start_time = DateTime.now
+		end
+		
+		begin
+			end_time = DateTime.parse(params[:event][:end_time])
+		rescue
+			
+			end_time = DateTime.now
+		end
 		
 		start_time = start_time.in_time_zone(current_user.user_preference.timezone)
 		end_time = end_time.in_time_zone(current_user.user_preference.timezone)
@@ -123,6 +134,6 @@ SQL_CONN = ActiveRecord::Base.connection
 	 
 		params[:event][:start_time] = adjusted_start_time
 		params[:event][:end_time] = adjusted_end_time
+
 	end
-  
 end

@@ -8,20 +8,14 @@ class EventsController < ApplicationController
   def index
 	if (current_user)
 	
-		@current = Array.new()
-		@upcoming = Array.new()
-		current_user.events.all.map!{|checking_event|
-			if (checking_event.has_ended)
-				checking_event.destroy
-			elsif (checking_event.has_begun)
-				@current.push(checking_event)
-			else
-				@upcoming.push(checking_event)
-			end
-		}
+		current_time = Time.now
+		@current = current_user.events.where("start_time <= '#{current_time}' AND end_time > '#{current_time}'").all
+		@upcoming = current_user.events.where("start_time > '#{current_time}'").all
+		
 	else
 	
 	end
+	
     #old_events = Event.where(:has_ended => true)
 	#old_events.each do |old_event|
 	#	old_event.destroy
@@ -70,11 +64,27 @@ class EventsController < ApplicationController
 	
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html do
+			
+			if request.xhr?
+			render :json => {
+			  :status => :created,
+			  :location => url_for(@event)
+			}
+			else
+			  redirect_to @event, notice: 'Event was successfully created.' 
+			end
+		
+		end
         format.json { render json: @event, status: :created, location: @event }
       else
-        format.html { render action: "new" }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+		format.html do
+			if request.xhr?
+			  render :json => @event.errors, :status => :unprocessable_entity
+			else
+			  render :action => :new, :status => :unprocessable_entity
+			end
+		end
       end
     end
   end
@@ -84,15 +94,33 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
 
-    respond_to do |format|
-      if @event.update_attributes(params[:event])
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
-    end
+			
+	respond_to do |format|
+		if @event.update_attributes(params[:event])
+		
+			format.html do
+				if request.xhr?
+				render :json => {
+				  :location => url_for(@event)
+				}
+				else
+				  redirect_to @event, notice: 'Event was successfully updated.'
+				end
+			end
+			#format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+			#render :json => "Event successfully updated"
+		else
+		
+			format.html do
+				if request.xhr?
+				  render :json => @event.errors, :status => :unprocessable_entity
+				else
+				  render :action => :edit, :status => :unprocessable_entity
+				end
+			end
+		end
+	end
+    
   end
 
   # DELETE /events/1
@@ -120,9 +148,20 @@ class EventsController < ApplicationController
   end
   
   def parse_datetime
+
+	begin
+		start_time = DateTime.parse(params[:event][:start_time])
+	rescue
+		
+		start_time = DateTime.now
+	end
 	
-	start_time = DateTime.parse(params[:event][:start_time])
-	end_time = DateTime.parse(params[:event][:end_time])
+	begin
+		end_time = DateTime.parse(params[:event][:end_time])
+	rescue
+		
+		end_time = DateTime.now
+	end
 	
 	start_time = start_time.in_time_zone(current_user.user_preference.timezone)
 	end_time = end_time.in_time_zone(current_user.user_preference.timezone)
@@ -134,6 +173,7 @@ class EventsController < ApplicationController
  
 	params[:event][:start_time] = adjusted_start_time
 	params[:event][:end_time] = adjusted_end_time
+
   end
   
 end

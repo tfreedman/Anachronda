@@ -1,7 +1,9 @@
 
 <%= stylesheet_link_tag    "timepicker", :media => "all" %>
   
-<%= form_for(@event) do |f| %>
+<%= form_for @event, :remote => true, :html => { :'data-type' => 'html', :id => 'create_event_form' } do |f| %>
+
+  <div class="validation-error"></div>
   <% if @event.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>

@@ -28,10 +28,11 @@ City
 <div class="field">
 Time Zone:
 <br />
-<%= time_zone_select "user_preference", 'timezone', TZInfo::Timezone.us_zones, :default => "Eastern Time (US & Canada)" %>
+<%= time_zone_select "user_preference", 'timezone', /Canada/, :default => "Eastern Time (US & Canada)", :id => "timezone" %>
 </div>
   
 <div class="actions">
 <%= submit_tag "Save" %>
 </div>
 <% end %>
+<div id="events"></div>
