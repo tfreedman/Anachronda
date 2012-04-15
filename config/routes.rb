@@ -25,6 +25,12 @@ CloudSpiders::Application.routes.draw do
 			get 'build_event'
 		end
 	end
+	resources :user_preferences do
+		member do
+			get 'edit'
+			post 'update'
+		end
+	end 
 	resources :events
     resources :authentications
 	

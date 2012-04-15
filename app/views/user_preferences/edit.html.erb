@@ -1,0 +1,31 @@
+<h1>Your Preferences</h1>
+
+<%= form_tag("/user_preferences/#{current_user.user_preference.id}", :method => :put) do%>
+  <% if @user_preference.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user_preference.errors.count, "error") %> prohibited these preferences from being saved:</h2>
+
+    <ul>
+    <% @user_preference.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+  
+<div class="field">
+Country:
+<br />
+<%= text_field_tag 'user_preference[country]', @user_preference.country %>
+</div>
+
+<div class="field">
+City 
+<br />
+<%= text_field_tag 'user_preference[city]', @user_preference.city %>
+</div>
+
+<div class="actions">
+<%= submit_tag "Save" %>
+</div>
+<% end %>
