@@ -25,6 +25,12 @@ City
 <%= text_field_tag 'user_preference[city]', @user_preference.city %>
 </div>
 
+<div class="field">
+Time Zone:
+<br />
+<%= time_zone_select "user_preference", 'timezone', TZInfo::Timezone.us_zones, :default => "Eastern Time (US & Canada)" %>
+</div>
+  
 <div class="actions">
 <%= submit_tag "Save" %>
 </div>

@@ -1,12 +1,14 @@
 module Layouts
   module ApplicationLayoutHelper
     def weather_helper(user)
-		if(user)
+		
+		begin
 			barometer = Barometer.new("#{user.user_preference.city}, #{user.user_preference.country}")
-		else
+			weather = barometer.measure
+		rescue Exception=>e
 			barometer = Barometer.new("Toronto, Canada")
+			weather = barometer.measure
 		end
-		weather = barometer.measure
 		return weather.current.icon
 		#'Sunny!' 
     end
