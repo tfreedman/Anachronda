@@ -22,5 +22,15 @@ module ApplicationHelper
             return unformatted_date.strftime("%d %B %Y %R %Z")
         end
     end
+	
+	def get_time
+		
+		begin
+			time = Time.now.in_time_zone(current_user.user_preference.timezone)
+		rescue Exception=>e
+			time = Time.now.in_time_zone("EST")
+		end
+		return time
+	end
 
 end

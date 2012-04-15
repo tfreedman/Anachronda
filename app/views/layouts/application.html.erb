@@ -43,7 +43,7 @@
 			else
 				user_time_zone = "UTC"
 			end %>
-		<%= Time.now.strftime('%l:%M %p') %>
+		<%= get_time.strftime('%l:%M %p') %>
 	</h1>
 	<% weather_overview = weather_helper(current_user) %>
 	<%= image_tag "weather/#{weather_overview}.png", {:alt=>weather_overview, :id => "weather"} %>
