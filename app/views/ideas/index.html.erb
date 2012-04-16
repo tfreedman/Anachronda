@@ -9,7 +9,7 @@
 		<% if current_user.ideas.empty? %>
 		
 		<% else %>
-			<% current_user.ideas.sort_by{|sortable| [sortable.category, -sortable.priority]}.each do |idea| %>
+			<% @ideas.each do |idea| %>
 			
 			  <% unless (prev_category == idea.category) %>
 				</table>
@@ -20,11 +20,13 @@
 			  <% end %>
 			  
 			  <tr>
+			  <td>
 			  <% if (first == true) %>
-					<td><div class="arrow-right"></div></td>
+					<div class="arrow-right"></div>
 
 				<% first = false
 				   end %>
+				</td>
 				<td class="event"><%= idea.title %></td>
 			
 				

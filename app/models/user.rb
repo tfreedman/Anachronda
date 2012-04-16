@@ -79,8 +79,10 @@ class User < ActiveRecord::Base
 	def get_breaks
 	
 		free_time = Array.new
+		time_now = DateTime.now
 		
-		@my_events = self.events.find(:all, :order => :start_time)
+		@my_events = self.events.where(['start_time > ?', DateTime.now]).order("start_time")
+		
 		if (@my_events.empty?)
 			return free_time
 		end

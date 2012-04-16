@@ -14,6 +14,8 @@ module Layouts
     end
 	
 	def weather_forecast_helper(user, time)
+	
+		time = DateTime.now unless (time > DateTime.now)
 		
 		begin
 			barometer = Barometer.new("#{user.user_preference.city}, #{user.user_preference.country}")
@@ -26,7 +28,7 @@ module Layouts
 			icon = weather.for(time).icon
 		rescue
 			
-			icon = "unknowns"
+			icon = "unknown"
 		end
 		return icon
 		#'Sunny!' 

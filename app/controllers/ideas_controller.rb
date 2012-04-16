@@ -5,7 +5,7 @@ class IdeasController < ApplicationController
   # GET /ideas
   # GET /ideas.json
   def index
-    @ideas = current_user.ideas.all
+    @ideas = current_user.ideas.find(:all, :order => "category asc, priority desc")
 
     respond_to do |format|
       format.html # index.html.erb
