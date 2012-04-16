@@ -8,7 +8,7 @@ class EventsController < ApplicationController
   def index
 	if (current_user)
 	
-		current_time = Time.now
+		current_time = DateTime.now.utc
 		@current = current_user.events.where("start_time <= '#{current_time}' AND end_time > '#{current_time}'").all
 		@upcoming = current_user.events.where("start_time > '#{current_time}'").all
 		

@@ -45,8 +45,9 @@
 			end %>
 		<%= get_time.strftime('%l:%M %p') %>
 	</h1>
-	<% weather_overview = weather_helper(current_user) %>
+	<% weather_overview = weather_forecast_helper(current_user, get_time) %>
 	<%= image_tag "weather/#{weather_overview}.png", {:alt=>weather_overview, :id => "weather"} %>
+	
 </nav>
 			<div id="arrow-left"></div>
 			<div id="config-container"></div>

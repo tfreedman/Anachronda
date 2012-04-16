@@ -32,5 +32,16 @@ module ApplicationHelper
 		end
 		return time
 	end
+	
+	
+	def get_user_time(in_time)
+		
+		begin
+			time = in_time.in_time_zone(current_user.user_preference.timezone)
+		rescue Exception=>e
+			time = in_time.in_time_zone("EST")
+		end
+		return time
+	end
 
 end
