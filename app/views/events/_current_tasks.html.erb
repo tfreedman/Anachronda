@@ -1,0 +1,37 @@
+
+<h3>Current Tasks</h3>
+<% prev_category = " " 
+   first = true %>
+<table>
+
+<% @current.sort_by{|sortable| [sortable.category, sortable.start_time, -sortable.priority]}.each do |event| %>
+  
+  <% unless (prev_category == event.category) %>
+	</table>
+	<% prev_category = event.category %>
+	<h4 class="eventCategory"><%= prev_category %></h4>
+
+	<table>
+	
+  <% end %>
+  
+  <tr onclick="location.href='/events/<%= event.id %>'">
+	<td>
+		<% if (first == true) %>
+			<div class="arrow-right"></div>
+			<b>
+		<% first = false
+		end %>
+	</td>
+	<td class="eventTableBuffer"></td>
+	<td class="eventTitle"><%= event.title %></td>
+	
+	<td class="eventTitle"> (until <%= event.end_time.strftime('%l:%M%p') %>
+	<% unless (event.end_time.today?) %>
+		<%= event.end_time.strftime('%B %d') %>
+	<% end %>)</td>
+	
+  </tr>
+	  
+<% end %>
+</table>

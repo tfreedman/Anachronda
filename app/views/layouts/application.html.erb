@@ -28,21 +28,31 @@
         
         <dt>ALARM</dt>
         <dd>2 hours before appointments</dd>
-        <%= link_to "Edit Preferences", edit_user_preference_path(current_user.user_preference) %> 
-        </dl>
+        <br />
+		<h5>
+			<%= link_to "Edit Preferences", edit_user_preference_path(current_user.user_preference) %> 
+		</h5>
+		
+		<h5> 
+			<%= link_to 'Connect to social media.', authentications_path %>
+		</h5>
+		<br /><br /><br /><br /><br /><br />
+		<h5>
+			<%= current_user.email %> is logged in.<br />
+			If user is not you, click <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
+		</h5>
+		</dl>
         <% else %>
         
+		<b>
+		<%= link_to "Register", new_user_registration_path %> or <%= link_to "Sign In", new_user_session_path %>
+		</b>
         <% end %>
 </div>
     
 <header>	
 
-<nav><h1 id="white">
-		<% if user_signed_in?
-				user_time_zone = current_user.user_preference.timezone
-			else
-				user_time_zone = "UTC"
-			end %>
+<nav><h1 onclick="location.href='/events'" id="white" >
 		<%= get_time.strftime('%l:%M %p') %>
 	</h1>
 	<% weather_overview = weather_forecast_helper(current_user, get_time) %>
@@ -69,18 +79,6 @@
 
 <%= yield %>
 <div align = "center">
-<% if user_signed_in? %>
-    <h6>
-		<%= current_user.email %> is logged in. If user is not you, click <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
-	</h6>
-	<h5> 
-		Feeling social? <%= link_to 'Connect to social media.', authentications_path %>
-	</h5>
-<% else %>
-	<b>
-    <%= link_to "Register", new_user_registration_path %> or <%= link_to "Sign In", new_user_session_path %>
-	</b>
-	<% end %>
 </div>
 
 </body>
