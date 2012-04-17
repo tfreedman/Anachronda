@@ -8,11 +8,17 @@ class EventsController < ApplicationController
   def index
 	if (current_user)
 	
-		current_time = DateTime.now
-		not_ended = current_user.events.where("end_time > '#{current_time}'")
-		@current = not_ended.where("start_time <= '#{current_time}'").all(:order => "category asc, start_time, priority desc")
-		@upcoming = not_ended.where("start_time > '#{current_time}'").all(:order => "category asc, start_time, priority desc")
-		
+		current_time = DateTime.now + 0.166666
+	
+		if (current_user.user_preference.infographics_mode)
+			not_ended = current_user.events.where("end_time > '#{current_time}' AND end_time < '#{current_time.next_day}'")
+			@current = not_ended.all
+			@upcoming = []
+		else
+			not_ended = current_user.events.where("end_time > '#{current_time}'")
+			@current = not_ended.where("start_time <= '#{current_time}'").all(:order => "category asc, start_time, priority desc")
+			@upcoming = not_ended.where("start_time > '#{current_time}'").all(:order => "category asc, start_time, priority desc")
+		end
 	else
 	
 	end

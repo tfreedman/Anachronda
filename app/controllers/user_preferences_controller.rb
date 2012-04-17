@@ -6,6 +6,11 @@ class UserPreferencesController < ApplicationController
   end
   def update
 	@user_preference = current_user.user_preference
+	if (params[:user_preference][:infographics_mode])
+		@user_preference.infographics_mode = true
+	else
+		@user_preference.infographics_mode = false
+	end
 
     respond_to do |format|
       if @user_preference.update_attributes(params[:user_preference])

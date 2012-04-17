@@ -1,6 +1,6 @@
 <h1>Your Preferences</h1>
 
-<%= form_tag("/user_preferences/#{current_user.user_preference.id}", :method => :put) do%>
+<%= form_tag("/user_preferences/#{current_user.user_preference.id}", :method => :put) do %>
   <% if @user_preference.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@user_preference.errors.count, "error") %> prohibited these preferences from being saved:</h2>
@@ -30,7 +30,11 @@ Time Zone:
 <br />
 <%= time_zone_select "user_preference", 'timezone', /Canada/, :default => "Eastern Time (US & Canada)", :id => "timezone" %>
 </div>
-  
+
+<div class="field">
+<%= check_box('user_preference', 'infographics_mode', {}, true, false) %> Would you like to view your schedule in infographics mode? (Note: this feature is experimental)
+</div>
+
 <div class="actions">
 <%= submit_tag "Save" %>
 </div>
