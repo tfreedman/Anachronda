@@ -7,10 +7,8 @@
 		<%= render 'next_tasks' unless @current.empty? %>
 		
 		<br /><br />
-		<br /><br />
 		
-		<h2><%= link_to 'New Event', new_event_path %>
-		<br /><br />
+		<h2>
 		<%= link_to 'My Ideas (unscheduled events)', ideas_path %>
 		</h2>
 
@@ -22,6 +20,6 @@
 
 
 <% else %>
-<h2> You must sign in before you can view any events </h2>
+<h2> You must <%= link_to "sign in", new_user_session_path %> before you can view any events </h2>
 <% end %> 
 	

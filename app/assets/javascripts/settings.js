@@ -12,7 +12,9 @@ $(function() {
             $("#menu").show("blind", null, 500, null);
             e.stopPropagation();
     });
+	
     
+	
     $("#menu_top").click(function(e) {
             $("#menu").hide("blind", null, 500, null);
             e.stopPropagation();

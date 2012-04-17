@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
 
-	<h3>Unscheduled Ideas</h3>
+	<h3>Unscheduled Ideas <%= link_to (image_tag "plus_32.png", {:alt=>"Add Event", :id => "new_event"}), new_idea_path %></h3>
 	<h5 style="margin:5px 0 0 50px"> (What you would like to do, but haven't yet determined when. Perhaps we can help!) </h5>
 		<table>
 		<% prev_category = " " 
@@ -19,7 +19,7 @@
 				
 			  <% end %>
 			  
-			  <tr>
+			  <tr onclick="location.href='/ideas/<%= idea.id %>'">
 			  <td>
 			  <% if (first == true) %>
 					<div class="arrow-right"></div>
@@ -30,13 +30,9 @@
 				<td class="event"><%= idea.title %></td>
 			
 				
-				<td><%= link_to 'Schedule', schedule_this_idea_path(idea) %></td>
-				<td><%= link_to 'Show Possibilities', show_possibilities_idea_path(idea) %></td>
+				<td><%= link_to 'Show Possibilities', schedule_this_idea_path(idea) %></td>
 				
-				<td><%= link_to 'Show', idea %></td>
-				<td><%= link_to 'Edit', edit_idea_path(idea) %></td>
-				
-				<td><%= link_to 'Destroy', idea, confirm: 'Are you sure?', method: :delete %></td>
+				<td><%= link_to 'Details', idea %></td>
 			  </tr>
 			<% end %>
 			</table>
@@ -46,8 +42,7 @@
 		<br /><br />
 		<h2><%= link_to 'Schedule All Ideas', schedule_all_ideas_user_path(current_user) %></h2>
 		<br />
-		<h2><%= link_to 'New Idea', new_idea_path %>
-		<br /><br />
+		<h2>
 		<%= link_to 'My Events (scheduled)', events_path %></h2>
 
 		<br /><br />

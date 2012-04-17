@@ -2,7 +2,7 @@
 <html>
 <head>
 
-  <title>CloudSpiders</title>
+  <title>Anachronda</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   
   <%= javascript_include_tag "application" %>
@@ -50,9 +50,10 @@
         <% end %>
 </div>
     
-<header>	
+<header >
 
-<nav><h1 onclick="location.href='/events'" id="white" >
+<nav>
+	<h1 onclick="location.href='/events'" id="clock">
 		<%= get_time.strftime('%l:%M %p') %>
 	</h1>
 	<% weather_overview = weather_forecast_helper(current_user, get_time) %>

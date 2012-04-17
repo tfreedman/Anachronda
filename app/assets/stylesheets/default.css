@@ -103,9 +103,10 @@ body {
 	margin: 15px 0 0 20px
 }
 
-#white {
+#white, #clock {
     color: white;
 }
+
 
 header {
 	background: #abd03d;	
