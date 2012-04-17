@@ -7,9 +7,10 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
 	if (current_user)
-	
+			
 		current_time = DateTime.now
 		not_ended = current_user.events.where("end_time > '#{current_time}'")
+		current_time = current_time + 0.16666
 		@current = not_ended.where("start_time <= '#{current_time}'").all(:order => "category asc, start_time, priority desc")
 		@upcoming = not_ended.where("start_time > '#{current_time}'").all(:order => "category asc, start_time, priority desc")
 		
