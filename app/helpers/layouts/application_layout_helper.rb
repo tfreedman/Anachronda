@@ -15,7 +15,7 @@ module Layouts
 	
 	def weather_forecast_helper(user, time)
 	
-		time = DateTime.now unless (time > DateTime.now)
+		time = DateTime.now.utc unless (time > DateTime.now.utc )
 		
 		begin
 			barometer = Barometer.new("#{user.user_preference.city}, #{user.user_preference.country}")
