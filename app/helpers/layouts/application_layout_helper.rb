@@ -9,7 +9,7 @@ module Layouts
 			barometer = Barometer.new("Toronto, Canada")
 			weather = barometer.measure
 		end
-		return weather.current.icon
+		return weather.for(Time.now).icon
 		#'Sunny!' 
     end
 	

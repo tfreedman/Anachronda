@@ -56,7 +56,7 @@
 	<h1 onclick="location.href='/events'" id="clock">
 		<%= get_time.strftime('%l:%M %p') %>
 	</h1>
-	<% weather_overview = weather_forecast_helper(current_user, get_time) %>
+	<% weather_overview = weather_forecast_helper(current_user, DateTime.now) %>
 	<%= image_tag "weather/#{weather_overview}.png", {:alt=>weather_overview, :id => "weather"} %>
 	
 </nav>
