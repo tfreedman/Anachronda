@@ -1,0 +1,21 @@
+<%= stylesheet_link_tag    "infographics", :media => "all" %>
+<h3> <%= link_to (image_tag "plus_32.png", {:alt=>"Add Event", :id => "new_event"}), new_event_path %> </h3>
+<% prev_category = " " 
+   first = true %>
+<table>
+
+<% @current.each_with_index do |event, index| %>
+    
+  <tr onclick="location.href='/events/<%= event.id %>'" class=<%= "info_row_even_#{index.even?}" %> >
+	<td>
+	</td>
+	<td class="eventTableBuffer"></td>
+	<td class="eventTitle"><%= event.title %></td>
+	
+	<td class="eventTitle"><%= event.start_time.strftime('%l:%M%p') %>
+	</td>
+	
+  </tr>
+	  
+<% end %>
+</table>

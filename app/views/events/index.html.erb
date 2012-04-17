@@ -1,19 +1,23 @@
 <% if user_signed_in? %>
 		
-		
+	
+	<% if (current_user.user_preference.infographics_mode) %>
+		<%= render 'infographics' %>
+	<% else %>
 		<%= render 'current_tasks' unless @current.empty? %>
 		<br />
 		
 		<%= render 'next_tasks' %>
 		
 		<br /><br />
-		
-		<h2>
-		<%= link_to 'My Ideas (unscheduled events)', ideas_path %>
-		</h2>
+	<% end %>
+	
+	<h2>
+	<%= link_to 'My Ideas (unscheduled events)', ideas_path %>
+	</h2>
 
 
-		<footer></footer>
+	<footer></footer>
 
 
 
