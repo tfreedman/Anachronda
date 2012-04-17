@@ -8,9 +8,10 @@ class EventsController < ApplicationController
   def index
 	if (current_user)
 	
-		current_time = DateTime.now.utc
-		@current = current_user.events.where("start_time <= '#{current_time}' AND end_time > '#{current_time}'").all
-		@upcoming = current_user.events.where("start_time > '#{current_time}'").all
+		current_time = DateTime.now
+		not_ended = current_user.events.where("end_time > '#{current_time}'")
+		@current = not_ended.where("start_time <= '#{current_time}'").all(:order => "category asc, start_time, priority desc")
+		@upcoming = not_ended.where("start_time > '#{current_time}'").all(:order => "category asc, start_time, priority desc")
 		
 	else
 	
