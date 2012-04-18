@@ -73,14 +73,27 @@
 		<div id="overlay-r"></div>
 		<div id="overlay-b"></div>
 		<div id="overlay-l"></div>
-<h2><%= Time.now.strftime("%A, %B #{Time.now.day.ordinalize}") %></h2>
+
+<div id="info_date" style="display: none">
+                <div class="info_row_div">
+			<h2><%= Time.now.strftime("%A, %B #{Time.now.day.ordinalize}") %></h2>
+                </div>
+                <div class="div_a">
+                        <div class="div_b">
+
+                        </div>
+                        <div class="div_c">
+
+                        </div>
+                </div>
+  </div>
+
+<h2 id="date_header"><%= Time.now.strftime("%A, %B #{Time.now.day.ordinalize}") %></h2>
 
 <p id="notice" class="notice"><%= notice %></p>
 <p id="alert" class="alert"><%= alert %></p>
 
 <%= yield %>
-<div align = "center">
-</div>
 
 </body>
 </html>

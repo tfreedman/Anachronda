@@ -12,9 +12,6 @@
 		<br /><br />
 	<% end %>
 	
-	<h2>
-	<%= link_to 'My Ideas (unscheduled events)', ideas_path %>
-	</h2>
 
 
 	<footer></footer>
@@ -24,6 +21,6 @@
 
 
 <% else %>
-<h2> You must <%= link_to "sign in", new_user_session_path %> before you can view any events </h2>
+	<h2> You must <%= link_to "sign in", new_user_session_path %> before you can view any events </h2>
 <% end %> 
 	

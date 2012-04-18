@@ -1,21 +1,42 @@
 <%= stylesheet_link_tag    "infographics", :media => "all" %>
-<h3> <%= link_to (image_tag "plus_32.png", {:alt=>"Add Event", :id => "new_event"}), new_event_path %> </h3>
-<% prev_category = " " 
-   first = true %>
-<table>
-
+<h3 style="margin-top: -10px; position: relative; z-index: 10; margin-left: -20px; margin-bottom: -50px"> <%= link_to (image_tag "plus_32.png", {:alt=>"Add Event", :id => "new_event"})+"Add Event", new_event_path %> </h3>
+<table class="info_table">
 <% @current.each_with_index do |event, index| %>
-    
-  <tr onclick="location.href='/events/<%= event.id %>'" class=<%= "info_row_even_#{index.even?}" %> >
-	<td>
-	</td>
-	<td class="eventTableBuffer"></td>
-	<td class="eventTitle"><%= event.title %></td>
+  
+  <tr onclick="location.href='/events/<%= event.id %>'" class=<%= raw("\"info_row_even_#{index.even?}\"") %> >
 	
-	<td class="eventTitle"><%= event.start_time.strftime('%l:%M%p') %>
+	<td>
+		
+		<div class="info_row_div">
+			<span class="infoTime">
+				<%= event.start_time.strftime('%l:%M%p') %>
+			</span>
+			<br />
+			<span class="infoTitle">
+				<%= event.title %>			
+			</span>
+
+			<div class=<%= raw("\"info_icon #{event.category}\"") %>>
+                        </div>
+
+		</div>
+		<div class="div_a">
+			<div class="div_b">
+
+                	</div>
+			<div class="div_c">
+
+                	</div>
+		</div>
 	</td>
 	
   </tr>
-	  
 <% end %>
+<tr id="link_to_ideas" class=<%= raw("\"info_row_even_#{@current.length.even?}\"") %>>
+	<td>
+	<h2>
+        	<%= link_to 'My Ideas (unscheduled events)', ideas_path %> 
+	</h2>
+	</td>
+</tr>
 </table>

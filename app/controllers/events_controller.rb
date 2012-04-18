@@ -12,7 +12,7 @@ class EventsController < ApplicationController
 	
 		if (current_user.user_preference.infographics_mode)
 			not_ended = current_user.events.where("end_time > '#{current_time}' AND end_time < '#{current_time.next_day}'")
-			@current = not_ended.all
+			@current = not_ended.all(:order => "start_time")
 			@upcoming = []
 		else
 			not_ended = current_user.events.where("end_time > '#{current_time}'")
