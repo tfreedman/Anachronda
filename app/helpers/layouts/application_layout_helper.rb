@@ -9,13 +9,13 @@ module Layouts
 			barometer = Barometer.new("Toronto, Canada")
 			weather = barometer.measure
 		end
-		return weather.for(Time.now).icon
+		return weather.current.icon
 		#'Sunny!' 
     end
 	
 	def weather_forecast_helper(user, time)
 	
-		time = DateTime.now.utc unless (time > DateTime.now.utc )
+		time = [get_time, get_user_time(time)].max
 		
 		begin
 			barometer = Barometer.new("#{user.user_preference.city}, #{user.user_preference.country}")
@@ -24,14 +24,14 @@ module Layouts
 			barometer = Barometer.new("Toronto, Canada")
 			weather = barometer.measure
 		end
-		begin
+		
+		begin			
 			icon = weather.for(time).icon
-		rescue
-			
+		rescue			
 			icon = "unknown"
+			#'Buggy weather api'
 		end
 		return icon
-		#'Sunny!' 
     end
 	
   end

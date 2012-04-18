@@ -16,8 +16,9 @@
 				<%= event.title %>			
 			</span>
 
-			<div class=<%= raw("\"info_icon #{event.category}\"") %>>
-                        </div>
+			<div class="info_icon">
+				<%= image_tag get_info_icon(event.category, index), {:alt=>"Add Event", :id => "new_event"} %>
+			</div>
 
 		</div>
 		<div class="div_a">

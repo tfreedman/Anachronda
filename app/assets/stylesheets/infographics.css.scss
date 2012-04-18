@@ -123,28 +123,14 @@
 
 
 .info_row_even_false * .info_icon {
-        background: url('/assets/png_white/bug.png');
 }
 
 
 .info_row_even_true * .info_icon {
-        background: url('/assets/png_grey/bug.png');
 	right: 150px;
 	margin-top: 26px;
 	opacity: 0.2;
 }
 
-.info_row_even_false * .Work {background: url('/assets/png_white/clipboard.png')}
-.info_row_even_true * .Work {background: url('/assets/png_grey/clipboard.png')}
-.info_row_even_false * .Travel {background: url('/assets/png_white/car.png')}
-.info_row_even_true * .Travel {background: url('/assets/png_grey/car.png')}
-.info_row_even_false * .Appointments {background: url('/assets/png_white/calendar.png')}
-.info_row_even_true * .Appointments {background: url('/assets/png_grey/calendar.png')}
-.info_row_even_false * .Meals {background: url('/assets/png_white/restaurant.png')}
-.info_row_even_true * .Meals {background: url('/assets/png_grey/restaurant.png')}
-.info_row_even_false * .Entertainment {background: url('/assets/png_white/tv.png')}
-.info_row_even_true * .Entertainment {background: url('/assets/png_grey/tv.png')}
-.info_row_even_false * .Outdoor {background: url('/assets/png_white/cloud.png')}
-.info_row_even_true * .Outdoor {background: url('/assets/png_grey/cloud.png')}
 
 #date_header {display: none}
