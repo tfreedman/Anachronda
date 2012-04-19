@@ -157,18 +157,18 @@ class EventsController < ApplicationController
   def parse_datetime
 
 	begin
+		end_time = DateTime.parse(params[:event][:end_time])
+	rescue
+		
+		end_time = DateTime.now
+	end
+	begin
 		start_time = DateTime.parse(params[:event][:start_time])
 	rescue
 		
 		start_time = DateTime.now
 	end
 	
-	begin
-		end_time = DateTime.parse(params[:event][:end_time])
-	rescue
-		
-		end_time = DateTime.now
-	end
 	
 	start_time = start_time.in_time_zone(current_user.user_preference.timezone)
 	end_time = end_time.in_time_zone(current_user.user_preference.timezone)
