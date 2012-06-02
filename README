@@ -1,0 +1,21 @@
+Anachronda
+==========
+A project by Dylan Robinson, Tyler Freedman, Matthew Krasucki, and Dominik Wojtkowiak. 
+
+Anachronda is a new way of planning and scheduling your days. All other day planners, schedulers, and calendars, currently, are static and provide little benefit over standard pen/paper calendars. They're easier to set up, usually, but that tends to be where the benefits stop.
+
+It seems odd that applications that know so much about those who use them, do so little to help the users.
+Instead of leaving a person to schedule all of their events, Anachronda was designed to aid in the process.
+
+There are two main aspects and considerations in planning that Anachronda can assist with; internal interference, and external interference. The former is something that other planners occasionally help with (to a small extent, which we'd like to push), but the latter is often ignored!
+Internal interference refers to where a schedule affects itself; things like making multiple appointments for the same time, or having an alarm based on your first event of the day (a feature we're implementing). These are important in helping the user actually follow through with their plans.
+External interference, or environmental interference, is where the world outside of the user affects the user's schedule. This is an obvious, but important, consideration to make - it's also one that other calendars/planners do not make. Weather, for example, affects many things - the types of activities in which you can participate, how long it will take you to get to work, how many employees will actually be there (important for meetings), etc. - as can many other external sources such as transit schedules, traffic, the schedules of friends, and the list goes on. 
+
+Anachronda is designed to be a calendar capable of updating itself, by continually updating events and notifications to use external data. For example, the onset of sudden rain can be programmed to move any outdoor activities to non-rainy days, or traffic delays can be used to change when you wake up in the morning.
+
+More information is provided here, including information on what's implemented and what isn't; 
+http://dylancodes.net/school/CPS630/Anachronda/
+
+=======================
+
+This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
