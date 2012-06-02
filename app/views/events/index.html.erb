@@ -1,0 +1,26 @@
+<% if user_signed_in? %>
+		
+	
+	<% if (current_user.user_preference.infographics_mode) %>
+		<%= render 'infographics' %>
+	<% else %>
+		<%= render 'current_tasks' unless @current.empty? %>
+		<br />
+		
+		<%= render 'next_tasks' %>
+		
+		<br /><br />
+	<% end %>
+	
+
+
+	<footer></footer>
+
+
+
+
+
+<% else %>
+	<h2> You must <%= link_to "sign in", new_user_session_path %> before you can view any events </h2>
+<% end %> 
+	

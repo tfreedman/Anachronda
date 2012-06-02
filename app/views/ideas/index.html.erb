@@ -1,0 +1,54 @@
+<% if user_signed_in? %>
+
+	<h3>Unscheduled Ideas <%= link_to (image_tag "plus_32.png", {:alt=>"Add Event", :id => "new_event"}), new_idea_path %></h3>
+	<h5 style="margin:5px 0 0 50px"> (What you would like to do, but haven't yet determined when. Perhaps we can help!) </h5>
+		<table>
+		<% prev_category = " " 
+		   first = true %>
+		<table>
+		<% if current_user.ideas.empty? %>
+		
+		<% else %>
+			<% @ideas.each do |idea| %>
+			
+			  <% unless (prev_category == idea.category) %>
+				</table>
+				<% prev_category = idea.category %>
+				<h4><%= prev_category %></h4>
+				<table>
+				
+			  <% end %>
+			  
+			  <tr onclick="location.href='/ideas/<%= idea.id %>'">
+			  <td>
+			  <% if (first == true) %>
+					<div class="arrow-right"></div>
+
+				<% first = false
+				   end %>
+				</td>
+				<td class="event"><%= idea.title %></td>
+			
+				
+				<td><%= link_to 'Show Possibilities', schedule_this_idea_path(idea) %></td>
+				
+				<td><%= link_to 'Details', idea %></td>
+			  </tr>
+			<% end %>
+			</table>
+		
+		<% end %>
+		<br />
+		<br /><br />
+		<h2><%= link_to 'Schedule All Ideas', schedule_all_ideas_user_path(current_user) %></h2>
+		<br />
+		<h2>
+		<%= link_to 'My Events (scheduled)', events_path %></h2>
+
+		<br /><br />
+		
+		<footer></footer>
+
+<% else %>
+<h2> You must sign in before you can view ideas. </h2>
+<% end %> 

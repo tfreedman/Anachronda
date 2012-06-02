@@ -1,0 +1,136 @@
+.info_row_even_true {
+	color: #ccc;
+	text-align: left;
+}
+
+.info_row_even_false {
+	color: #fff;
+	text-align: right;
+}
+
+.info_row_div, #info_date {
+	height: 120px;
+	width: 100%;
+}
+
+#info_date {
+	height: 60px !important;
+	display: block !important;
+	padding-left: 0 !important
+}
+
+
+#info_date  * .div_c {
+        border-right: 40px solid #323232;
+}
+
+#info_date * .div_b {
+        background: #323232;
+}
+
+#info_date .info_row_div {
+	background: #323232;
+	height: 60px !important;
+}
+
+.info_row_even_false * span {
+	margin-right: 150px;
+	position: relative;
+	top: 76px !important;
+}
+
+.info_row_even_false * .div_c {
+        border-right: 40px solid #ccc;
+}
+
+.info_row_even_true * .div_c {
+        border-right: 40px solid #FFF;
+}
+
+.info_row_div span {
+	position: relative;
+	top: 78px;
+	margin-left: 20px
+}
+
+.infoTime {
+	font-size: 26px;
+        font-weight: lighter;
+        text-transform: uppercase;
+}
+
+.infoTitle {
+	font-size: 30px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+
+.info_row_even_false * .div_b {
+        background: #ccc;
+}
+
+.info_row_even_true * .div_b {
+        background: #FFF;
+}
+
+
+.info_row_even_true td .info_row_div {
+	background: #fff;
+}
+
+.info_row_even_false td .info_row_div {
+	background: #ccc;
+}
+
+.info_table td, .info_table * tr, .info_table, .info_table tbody {width: 100%; margin: 0; padding: 0}
+
+.div_a {
+	width: 130px;
+	height: 40px;
+	position: absolute;
+	right: 0;
+	clear: both
+}
+
+.div_b {
+	float:right;
+	width: 90px;
+	height: 40px;
+}
+
+.div_c{
+	border-bottom: 40px solid transparent;
+	height: 0;
+    	width: 0;	
+	float:left
+}
+
+#link_to_ideas {
+	text-align: left;
+	background: #ABD03D;
+}
+
+.info_icon {
+	width: 48px;
+	height: 48px;
+	background-position: bottom;
+	background-repeat: no-repeat !important;
+	position: absolute;
+	margin-top: 25px;
+	margin-left: 20px
+}
+
+
+.info_row_even_false * .info_icon {
+}
+
+
+.info_row_even_true * .info_icon {
+	right: 150px;
+	margin-top: 26px;
+	opacity: 0.2;
+}
+
+
+#date_header {display: none}

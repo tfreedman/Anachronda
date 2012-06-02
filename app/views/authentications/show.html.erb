@@ -1,0 +1,19 @@
+<p>
+  <b>User:</b>
+  <%= @authentication.user %>
+</p>
+
+<p>
+  <b>Provider:</b>
+  <%= @authentication.provider %>
+</p>
+
+<p>
+  <b>Uid:</b>
+  <%= @authentication.uid %>
+</p>
+
+<div id="links">
+    <%= link_to 'Edit', edit_authentication_path(@authentication) %> |
+    <%= link_to 'Back', authentications_path %>
+</div>

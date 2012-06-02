@@ -1,0 +1,61 @@
+<% if user_signed_in? %>
+
+<h3 style="margin-top:0; padding-top:0;"> Sign In, and Sync: </h3>
+<% #title "Sign In" %>
+<br />
+<div style="margin-left: 60px;">
+<% if current_user.authentications %>
+
+	 
+  <% unless current_user.authentications.empty? %>
+    <p><strong>You are currently signed in with:</strong></p>
+    <div class="authentications">
+      <% for authentication in @authentications %>
+        <div class="authentication">
+          <%= image_tag "Google_32.png", :size => "32x32" %>
+          <div class="provider"><%= authentication.provider.titleize %></div>
+          <div class="uid"><%= authentication.uid %></div>
+          <%= link_to "X", authentication, :confirm => 'Are you sure you want to remove this authentication option?', :method => :delete, :class => "remove" %>
+        </div>
+      <% end %>
+      <div class="clear"></div>
+    </div>
+	<br /> <br />
+  <% end %>
+	<br /> 
+  <p><strong>Add another service:</strong></p>
+<% else %>
+  <p><strong>Sign in through one of these services:</strong></p>
+<% end %>
+<a href="/auth/facebook" class="auth_provider">
+  <%= image_tag "facebook_64.png", :size => "64x64", :alt => "Facebook" %>
+  Facebook
+</a>
+<a href="/auth/twitter" class="auth_provider">
+  <%= image_tag "twitter_64.png", :size => "64x64", :alt => "Twitter" %>
+  Twitter
+</a>
+<a href="/auth/google_oauth2" class="auth_provider">
+  <%= image_tag "google_64.png", :size => "64x64", :alt => "Google" %>
+  Google
+</a>
+<div class="clear"></div>
+
+</div>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<h2><%# link_to 'Sync with Google', sync_google_calendar_user_path(current_user) %></h2>
+<h5>
+
+<%= link_to 'Back', events_path, :style => "margin-left: 55px;" %>
+</h5>
+<% else %>
+<h2> You must 
+<%= link_to "Register", new_user_registration_path %> or <%= link_to "Sign In", new_user_session_path %>
+before you can connect to social media. </h2>
+<% end %> 

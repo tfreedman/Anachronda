@@ -1,0 +1,34 @@
+<h3>Upcoming Tasks <%= link_to (image_tag "plus_32.png", {:alt=>"Add Event", :id => "new_event"}), new_event_path %></h3>
+
+	<% prev_category = " " 
+	   first = true %>
+	<table>
+	
+	<% @upcoming.each do |event| %>
+	  
+	  <% unless (prev_category == event.category) %>
+		</table>
+		<% prev_category = event.category %>
+		<h4 class="eventCategory"><%= prev_category %></h4>
+
+		<table>
+		
+	  <% end %>
+	  
+	  <tr onclick="location.href='/events/<%= event.id %>'"> 
+		<td class="eventTableBuffer"></td>
+		
+		<td class="event"><%= event.start_time.strftime('%l:%M%p') %>
+		</td>
+		<td class="eventTitle"><%= event.title %> 
+		 </td>
+		<% unless (event.start_time.today?) %>
+		<td class="eventTitle">
+			<%= event.start_time.strftime('(%B %d)') %>
+		</td>
+		<% end %>
+		
+	  </tr>
+		  
+	<% end %>
+	</table>

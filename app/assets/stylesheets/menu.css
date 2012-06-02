@@ -1,0 +1,64 @@
+
+#menu 
+{
+    width: 25em; 
+    height: 28em; 
+    padding: 0.4em;
+    
+    position: absolute;
+    top: 32px;
+    right: 27px;
+    z-index: 1;
+    
+    border-color: #FFFFFF;
+    border-width: 5px;
+    border-style: solid;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+
+    background-color: #ABD03D;
+    text-align: left;
+}
+
+#menu #menu_top
+{
+    height: 60px;
+}
+
+#menu img#menu_icon
+{
+    position: relative;
+    width: 35px;
+    height: 35px;
+    top: 12px;
+    left: 12px;
+}
+
+#menu h1
+{
+    font-size: 30px;
+    position: relative;
+    top: 6px;
+}
+
+#menu dl
+{
+    margin-left: 25px;
+    color: #FFFFFF;
+}
+
+#menu dt
+{
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+#menu dd
+{
+    font-size: 15px;
+    position: relative;
+    right: 20px;
+    margin-bottom: 2px;
+}

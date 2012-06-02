@@ -1,0 +1,43 @@
+<h3>
+<p>
+  <b>Title:</b>
+  <%= @event.title %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @event.category %>
+</p>
+    
+<p>
+  <b>Priority:</b>
+  <%= get_priority_name(@event.priority) %>
+</p>
+
+<p>
+  <b>Start time:</b>
+  <%= format_date_long(@event.start_time) %>
+</p>
+
+<p>
+  <b>End Time:</b>
+  <%= format_date_long(@event.end_time) %>
+</p>
+
+<p>
+<b>Predicted Weather:<b>
+<% weather_overview = weather_forecast_helper(current_user, @event.start_time) %>
+<%= image_tag "weather/#{weather_overview}.png", {:alt=>weather_overview, :id => "weather", :style => "background-color: #ABD03D;"} %>
+</p>
+
+</h3>
+
+<br />
+<br />
+<h3>
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Destroy', @event, confirm: 'Are you sure?', method: :delete %> 
+</h3>
+
+<br / >
+<h3><%= link_to 'Return to events schedule', events_path %></h3>

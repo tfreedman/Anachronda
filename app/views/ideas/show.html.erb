@@ -1,0 +1,37 @@
+<div>
+	<h3>
+    <p>
+      <b>Title:</b>
+      <%= @idea.title %>
+    </p>
+    
+    <p>
+      <b>Category:</b>
+      <%= @idea.category %>
+    </p>
+    
+    <p>
+      <b>Priority:</b>
+      <%= get_priority_name(@idea.priority) %>
+    </p>
+    
+    <p>
+      <b>Duration:</b>
+      <%= format_duration(@idea.duration) %>
+    </p>
+
+    <p style="visibility:hidden">
+      <b>User:</b>
+      <%= @idea.user %>
+    </p>
+	</h3>
+	<h3>
+		<%= link_to 'Show Possibilities', schedule_this_idea_path(@idea) %>
+	</h3>
+	<h3>
+	<%= link_to 'Edit', edit_idea_path(@idea) %> |
+	<%= link_to 'Destroy', @idea, confirm: 'Are you sure?', method: :delete %> 
+	</h3>
+	
+	<h3><%= link_to 'Return to ideas', ideas_path %></h3>
+</div>

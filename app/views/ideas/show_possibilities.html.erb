@@ -1,0 +1,43 @@
+
+<% if user_signed_in? %>
+
+	<h4>Possibilities for <%= @idea.title %></h4>
+	
+		<table>
+		
+		<tr>
+			<td><b>Start Time:</b></td>
+			<td><b>End Time:</b></td>
+			<td><b>Score:</b></td>
+		</tr> 
+		<% @possibilities.each do |possibility| %>
+		  
+		  
+		  
+		  <tr>
+			<td><%= format_date_long(possibility.start_time) %></td>
+			<td><%= format_date_long(possibility.end_time) %></td>
+			<td><%= possibility.score %></td>
+			<td><%= link_to 'Choose me!', select_possibility_path(possibility), :id => "links" %></td>
+		  </tr>
+		<% end %>
+		</table>
+		<br />
+		<br /><br /><br />
+		<h2>
+		<%= link_to '(Back to) My Ideas', ideas_path %>
+		<br /><br />
+		<%= link_to 'My Events (scheduled)', events_path %></h2>
+
+		<br /><br />
+		
+		<footer></footer>
+
+<% else %>
+<h2> You must sign in before you can view these possibilities. </h2>
+<% end %>
+
+<div id="links">
+    <%= link_to 'Edit', edit_idea_path(@idea) %> |
+    <%= link_to 'Back', ideas_path %>
+</div>

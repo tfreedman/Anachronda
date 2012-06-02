@@ -1,0 +1,39 @@
+<%= form_for(@idea) do |f| %>
+  <% if @idea.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@idea.errors.count, "error") %> prohibited this idea from being saved:</h2>
+
+      <ul>
+      <% @idea.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :category %><br />
+	<% category_list = get_categories(@idea.category) %>
+	<%= select_tag('idea[category]', category_list, :id => "category_list") %>
+  </div>
+  <div class="field" id="new_category">
+    <%= f.label "New Category" %><br />
+    <%= f.text_field :category, :id => "category_name" %>
+  </div>
+  <div class="field">
+    <%= f.label :priority %><br />
+	<% priority_list = get_priorities(@idea.priority) %>
+	<%= select_tag('idea[priority]', priority_list) %>
+  </div>
+  <div class="field">
+    <%= f.label :duration %><br />
+    <%= f.text_field :duration, :id => 'duration', :as => :string, :value => format_duration(@idea.duration) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,48 @@
+
+<%= stylesheet_link_tag    "timepicker", :media => "all" %>
+  
+<%= form_for @event, :remote => true, :html => { :'data-type' => 'html', :id => 'create_event_form' } do |f| %>
+
+  <div class="validation-error"></div>
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+      <% @event.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :category %><br />
+	<% category_list = get_categories(@event.category) %>
+	<%= select_tag('event[category]', category_list, :id => "category_list") %>
+  </div>
+  <div class="field" id="new_category">
+    <%= f.label "New Category" %><br />
+    <%= f.text_field :category, :id => "category_name" %>
+  </div>
+  <div class="field">
+    <%= f.label :priority %><br />
+	<% priority_list = get_priorities(@event.priority) %>
+	<%= select_tag('event[priority]', priority_list) %>
+  </div>
+  <div class="field">
+    <%= f.label :start_time %><br />
+    <%= f.text_field :start_time, :id => 'start_time', :as => :string, :value => format_date_input(@event.start_time) %>
+  </div>
+  <div class="field">
+    <%= f.label :end_time %><br />
+    <%= f.text_field :end_time, :id => 'end_time', :as => :string, :value => format_date_input(@event.end_time) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
